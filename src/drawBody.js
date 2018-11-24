@@ -24,5 +24,10 @@ function drawBody(body) {
 			ellipse(drawpos[0], drawpos[1], shape.radius * 2);
 			line(drawpos[0], drawpos[1], drawpos[0] + Math.cos(body.angle) * shape.radius, drawpos[1] + Math.sin(body.angle) * shape.radius);
 		}
+		else if (shape.type == p2.Shape.CAPSULE) {
+			var drawpos = [];
+			body.toWorldFrame(drawpos, [relative_pos[0], relative_pos[1]]);
+			ellipse(drawpos[0], drawpos[1], shape.radius * 2);
+		}
 	}
 }
