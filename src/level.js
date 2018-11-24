@@ -9,11 +9,8 @@
 		var enemies = svg.layer("Enemies");
 		enemies.forEach(function(obj) {
 			if (obj.type == "circle") {
-				var enemybody = new p2.Body({mass: 5, position: [obj.x, obj.y]});
-				var enemyshape = new p2.Circle({radius: obj.r});
-				enemybody.addShape(enemyshape);
-				this.world.addBody(enemybody);
-	        	this.enemyarray.push(enemybody);
+				var enemy = new Enemy(this, obj.x, obj.y);
+	        	this.enemyarray.push(enemy);
 			}
 		}, this);
 
@@ -40,7 +37,7 @@
 		this.parallax.draw(0);
 		drawBody(this.terrain.body);
 		this.enemyarray.forEach(function(enemy) {
-			drawBody(enemy);
+			enemy.draw();
 		});
 		this.cha.draw();
 		pop();
