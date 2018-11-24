@@ -12,9 +12,11 @@ class cha{
         this.y=y;
         this.r=r;
         this.personbody = new p2.Body({mass: 5, position: [this.x, this.y]});
-        this.personshape = new p2.Circle({radius: this.r});
+        this.personshape = new p2.Capsule({length:3 ,radius: this.r});
         this.personbody.addShape(this.personshape);
         world.addBody(this.personbody);
+        
+        this.chasensor= new p2.Circle();
     }
     update(){
         if(posY==true){
