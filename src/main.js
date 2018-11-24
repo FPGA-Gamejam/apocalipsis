@@ -1,25 +1,29 @@
 var TIMESTEP = 1 / 60;
-var level3_svg;
-var level;
+var level3_svg, vcr;
+var level, hud;
 function preload() {
-	level3_svg = new svgParser("rsc/levels/level_3.svg");
+	level3_svg = new svgParser("rsc/levels/level_1.svg");
+	vcr = loadFont("rsc/fonts/VCR.ttf")
 }
 
 function setup() {
-	canvas = createCanvas(1024, 768);
+	canvas = createCanvas(1280, 720);
 	canvas.drawingContext.imageSmoothingEnabled = false;
 
 	level = new Level(level3_svg);
+	hud = new HUD(level);
 }
 
 function draw() {
 	//logica
-	this.level.world.step(1 / 60);
-	this.level.update(TIMESTEP);
+	level.world.step(TIMESTEP);
+	level.update(TIMESTEP);
+	hud.update(TIMESTEP);
 
 	//dibujado
 	background(255);
-	this.level.draw();
+	level.draw();
+	hud.draw();
 
 	text("(0, 0)", 0, 10);
 	text("(400, 300)", 400, 310);
