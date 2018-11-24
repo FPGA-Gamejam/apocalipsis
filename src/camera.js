@@ -6,7 +6,7 @@ class Camera {
 		}
 		this.pos = [0, 0];
 		this.dest = [0, 0];
-		this.scale = 1;
+		this.scale = 0.5;
 	}
 	target(x, y) {
 		var dim = this.screenDimentions;
