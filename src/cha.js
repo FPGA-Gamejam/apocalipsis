@@ -11,15 +11,20 @@ class cha{
         this.x=x;
         this.y=y;
         this.r=r;
-        this.personbody = new p2.Body({mass: 5, position: [this.x, this.y]});
+        this.personbody = new p2.Body({mass: 5, position: [this.x, this.y], fixedRotation: true});
         this.personshape = new p2.Capsule({length:3 ,radius: this.r});
+        //this.personshape.sensor=true;
         this.personbody.addShape(this.personshape);
         world.addBody(this.personbody);
         
-        this.chasensor= new p2.Circle();
+        this.world=world;
     }
     update(){
         if(posY==true){
+            /*this.world.on("beginContact",function(event){
+                console.log("aa");
+                
+            });*/
             this.personbody.applyImpulse([0,-1000]);
             posY=false;
         }
