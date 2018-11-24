@@ -1,13 +1,14 @@
 var TIMESTEP = 1 / 60;
-var level3_svg, vcr;
+var level3_svg, level3_bg, vcr;
 var level, hud;
 function preload() {
 	level3_svg = new svgParser("rsc/levels/level_1.svg");
+	level3_bg = loadImage("resources/sprites/background_01.jpg");
 	vcr = loadFont("rsc/fonts/VCR.ttf")
 }
 
 function setup() {
-	canvas = createCanvas(1280, 720);
+	canvas = createCanvas(1600, 900);
 	canvas.drawingContext.imageSmoothingEnabled = false;
 
 	level = new Level(level3_svg);
