@@ -25,11 +25,11 @@
      borderopacity="1"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="550.02377"
-     inkscape:cy="31.731659"
+     inkscape:zoom="0.5"
+     inkscape:cx="1173.4049"
+     inkscape:cy="154.09369"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer5"
      showgrid="true"
      units="px"
      inkscape:pagecheckerboard="false"
@@ -1090,12 +1090,216 @@
      id="layer2"
      inkscape:label="Floor">
     <rect
-       style="fill:#0000ff;fill-opacity:1"
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        id="rect5114"
        width="3200"
        height="100"
        x="0"
        y="800"
        inkscape:label="floor_common" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5116"
+       width="50"
+       height="50"
+       x="1350"
+       y="750"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5118"
+       width="50"
+       height="50"
+       x="1400"
+       y="700"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5120"
+       width="50"
+       height="50"
+       x="1450"
+       y="650"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5124"
+       width="50"
+       height="50"
+       x="1500"
+       y="700"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5126"
+       width="50"
+       height="50"
+       x="1550"
+       y="750"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5128"
+       width="50"
+       height="50"
+       x="1400"
+       y="750"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5130"
+       width="50"
+       height="50"
+       x="1450"
+       y="700"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5134"
+       width="50"
+       height="50"
+       x="1450"
+       y="750"
+       inkscape:label="floor_cube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5136"
+       width="50"
+       height="50"
+       x="1500"
+       y="750"
+       inkscape:label="floor_cube" />
+    <path
+       style="fill:#0000ff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 1900,800 h 200 V 600 l -200,200"
+       id="path5138"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5140"
+       width="100"
+       height="200"
+       x="2100"
+       y="600"
+       inkscape:label="floor_tube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5142"
+       width="100"
+       height="300"
+       x="2200"
+       y="500"
+       inkscape:label="floor_tube" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5144"
+       width="100"
+       height="50"
+       x="2400"
+       y="500"
+       inkscape:label="floor_panel" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5146"
+       width="100"
+       height="50"
+       x="2600"
+       y="500"
+       inkscape:label="floor_panel" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5148"
+       width="100"
+       height="50"
+       x="2800"
+       y="500"
+       inkscape:label="floor_panel" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Player">
+    <rect
+       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5151"
+       width="100"
+       height="200"
+       x="200"
+       y="600"
+       inkscape:label="player" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Enemies">
+    <rect
+       style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5154"
+       width="100"
+       height="100"
+       x="1700"
+       y="700"
+       inkscape:label="enemy" />
+    <rect
+       style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5156"
+       width="100"
+       height="100"
+       x="2500"
+       y="700"
+       inkscape:label="enemy" />
+    <rect
+       style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5158"
+       width="100"
+       height="100"
+       x="2800"
+       y="700"
+       inkscape:label="enemy" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Items">
+    <rect
+       style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5161"
+       width="50"
+       height="50"
+       x="1450"
+       y="500"
+       inkscape:label="item_collect" />
+    <rect
+       style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5163"
+       width="50"
+       height="50"
+       x="2250"
+       y="350"
+       inkscape:label="item_collect" />
+    <rect
+       style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5165"
+       width="50"
+       height="50"
+       x="2450"
+       y="350"
+       inkscape:label="item_collect" />
+    <rect
+       style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5167"
+       width="50"
+       height="50"
+       x="2650"
+       y="350"
+       inkscape:label="item_collect" />
+    <rect
+       style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect5169"
+       width="50"
+       height="50"
+       x="2850"
+       y="350"
+       inkscape:label="item_collect" />
   </g>
 </svg>
