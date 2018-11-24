@@ -53,16 +53,7 @@ class cha{
     }
     update(){
         var vel = this.personbody.velocity;
-        if(posY==true && double==false){
-            this.personbody.velocity = p2.vec2.fromValues(vel[0], -1500);
-            posY=false;
-            if(contact==false){
-                double=true;
-            }
-        }
-        else{
-            posY=false;
-        }
+        var pos = this.personbody.position;
         if(keyIsDown(RIGHT_ARROW)){
             this.personbody.velocity = p2.vec2.fromValues(150, vel[1]);
         }
@@ -71,6 +62,18 @@ class cha{
         }
         else{
             this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
+        }
+        vel = this.personbody.velocity;
+        if(posY==true && double==false){
+            console.log(vel);
+            this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
+            posY=false;
+            if(contact==false){
+                double=true;
+            }
+        }
+        else{
+            posY=false;
         }
     }
     draw(){
