@@ -7,7 +7,7 @@ function preload() {
 }
 
 function setup() {
-	canvas = createCanvas(1600, 900);
+	canvas = createCanvas(1600, 3000);
 	canvas.drawingContext.imageSmoothingEnabled = false;
 
 	level = new Level(level3_svg);

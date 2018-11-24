@@ -27,7 +27,11 @@ function drawBody(body) {
 		else if (shape.type == p2.Shape.CAPSULE) {
 			var drawpos = [];
 			body.toWorldFrame(drawpos, [relative_pos[0], relative_pos[1]]);
-			ellipse(drawpos[0], drawpos[1], shape.radius * 2);
+			push();
+			translate(body.position[0], body.position[1]);
+			rotate(body.angle);
+			rect(0 - shape.length / 2, 0 - shape.radius, shape.length + shape.radius, shape.radius * 2, shape.radius);
+			pop();
 		}
 	}
 }
