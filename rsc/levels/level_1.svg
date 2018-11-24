@@ -25,11 +25,11 @@
      borderopacity="1"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35355339"
-     inkscape:cx="1976.0996"
-     inkscape:cy="203.9451"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="1537.0177"
+     inkscape:cy="160.23544"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="true"
      units="px"
      inkscape:pagecheckerboard="false"
@@ -3212,12 +3212,6 @@
        x="3250"
        y="700"
        inkscape:label="floor_door_bot" />
-    <path
-       style="fill:#0000ff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
-       d="m 1350,800 v -50 h 50 v -50 h 50 v -50 h 50 v 50 h 50 v 50 h 50 v 50 h -250"
-       id="path5598"
-       inkscape:connector-curvature="0"
-       inkscape:label="floor_cubes" />
     <rect
        style="fill:#0000ff;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="rect5600"
@@ -3391,6 +3385,12 @@
        id="path6149"
        inkscape:connector-curvature="0"
        inkscape:label="floor_ramp" />
+    <path
+       style="fill:#0000ff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 1350,800 v -50 h 50 v -50 h 50 v -50 h 50 v 50 h 50 v 50 h 50 v 50 z"
+       id="path6151"
+       inkscape:connector-curvature="0"
+       inkscape:label="floor_cubes" />
   </g>
   <g
      inkscape:groupmode="layer"
