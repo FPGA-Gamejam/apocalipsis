@@ -52,8 +52,9 @@ class cha{
         });
     }
     update(){
+        var vel = this.personbody.velocity;
         if(posY==true && double==false){
-            this.personbody.applyImpulse([0,-1000]);
+            this.personbody.velocity = p2.vec2.fromValues(vel[0], -1500);
             posY=false;
             if(contact==false){
                 double=true;
@@ -62,15 +63,14 @@ class cha{
         else{
             posY=false;
         }
-        var vel = this.personbody.velocity;
         if(keyIsDown(RIGHT_ARROW)){
-            this.personbody.velocity = p2.vec2.fromValues(300, vel[1]);
+            this.personbody.velocity = p2.vec2.fromValues(150, vel[1]);
         }
-        else {
+        else if(keyIsDown(LEFT_ARROW)){
+            this.personbody.velocity = p2.vec2.fromValues(-150, vel[1]);
+        }
+        else{
             this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
-        }
-        if(keyIsDown(LEFT_ARROW)){
-            this.personbody.applyImpulse([-30,0]);
         }
     }
     draw(){

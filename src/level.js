@@ -1,6 +1,6 @@
  class Level {
 	constructor(svg) {
-		this.world = new p2.World({gravity: [0, 90]});
+		this.world = new p2.World({gravity: [0, 200]});
 		this.terrain = new Terrain(this, svg);
 		this.parallax = new Parallax();
 
