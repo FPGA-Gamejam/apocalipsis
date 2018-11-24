@@ -97,7 +97,6 @@ class svgParser {
 			vertices: [[x, y + height], [x + width, y + height], [x + width, y], [x, y]],
 			label: node.getString("inkscape:label"),
 		};
-		console.log(obj);
 		this.transform(node, obj);
 		return obj;
 	}
