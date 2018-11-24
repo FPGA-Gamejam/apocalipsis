@@ -15,14 +15,18 @@
 	        	this.enemyarray.push(enemybody);
 			}
 		}, this);
+
+		this.cha = new cha(100, 100, 10, this.world);
 	}
 	update(dt) {
 		this.world.step(dt);
+		this.cha.update(dt);
 	}
 	draw() {
 		drawBody(this.terrain.body);
 		this.enemyarray.forEach(function(enemy) {
 			drawBody(enemy);
 		});
+		this.cha.draw();
 	}
 }

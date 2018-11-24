@@ -2,11 +2,11 @@ var TIMESTEP = 1 / 60;
 var level3_svg;
 var level;
 function preload() {
-	level3_svg = new svgParser("rsc/levels/level_3.svg");
+	level3_svg = new svgParser("rsc/levels/level_1.svg");
 }
 
 function setup() {
-	canvas = createCanvas(1024, 768);
+	canvas = createCanvas(1600, 900);
 	canvas.drawingContext.imageSmoothingEnabled = false;
 
 	level = new Level(level3_svg);

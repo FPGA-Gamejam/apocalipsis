@@ -29,7 +29,6 @@ class cha{
         }
     }
     draw(){
-        this.update();
         drawBody(this.personbody);
     }
 } 
