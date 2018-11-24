@@ -11,6 +11,15 @@ class Terrain {
 					break;
 			}
 		}, this);
+		this.solidos = svg.layer("Border");
+		this.solidos.forEach(function(obj) {
+			switch (obj.type) {
+				case "rect":
+				case "path":
+					this.body.fromPolygon(obj.vertices);
+					break;
+			}
+		}, this);
 		this.level.world.addBody(this.body);
 	}
 } 

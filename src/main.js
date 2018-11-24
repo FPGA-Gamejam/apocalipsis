@@ -5,6 +5,8 @@ function preload() {
 	level3_svg = new svgParser("rsc/levels/level_1.svg");
 	level3_bg = loadImage("resources/sprites/background_01.jpg");
 	vcr = loadFont("rsc/fonts/VCR.ttf")
+	panda_idle = loadImage("resources/sprites/Panda-prev1-mov_stat1.png");
+	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
 }
 
 function setup() {

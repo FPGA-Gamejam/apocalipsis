@@ -66,7 +66,7 @@ class cha{
         vel = this.personbody.velocity;
         if(posY==true && double==false){
             console.log(vel);
-            this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
+            this.personbody.velocity = p2.vec2.fromValues(vel[0], -600);
             posY=false;
             if(contact==false){
                 double=true;
@@ -77,7 +77,8 @@ class cha{
         }
     }
     draw(){
-        drawBody(this.personbody);
-        drawBody(this.sensorbody);
+        //drawBody(this.personbody);
+        //drawBody(this.sensorbody);
+        image(panda_idle, this.personbody.position[0] - 55, this.personbody.position[1] - 140);
     }
 } 
