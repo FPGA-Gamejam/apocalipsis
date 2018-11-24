@@ -22,21 +22,22 @@ class cha{
         world.addBody(this.personbody);
         
         //sensor
-        this.sensorbody = new p2.Body({mass: 5, position: [this.x, this.y]});
-        this.sensorshape = new p2.Circle({radius: 10});
+        this.sensorbody = new p2.Body({mass: 1, position: [this.x, this.y], fixedRotation: true});
+        this.sensorshape = new p2.Box({width: 60, height: 20});
         this.sensorshape.sensor=true;
         this.sensorbody.addShape(this.sensorshape);
         world.addBody(this.sensorbody);
+        var constraint = new p2.RevoluteConstraint(this.personbody, this.sensorbody, {
+            localPivotA: [0, 50]
+        });
+        world.addConstraint(constraint);
         sensors.push(this.sensorbody);
         
         this.world=world;
-    }
-    update(){
-        //this.sensorbody.position[0]=this.personbody.position[0];
-        //this.sensorbody.position[1]=this.personbody.position[1]+this.r+2;
+
         this.world.on("endContact",function(event){
-            if(event.bodyA==sensors[0]){
-                console.log("a");
+            if(event.bodyA==sensors[0] || event.bodyB==sensors[0] ){
+                 console.log(event);
                 contact=false;
                 if(double==true){
                     posY=false;
@@ -49,6 +50,8 @@ class cha{
                 double=false;
             }
         });
+    }
+    update(){
         if(posY==true && double==false){
             this.personbody.applyImpulse([0,-1000]);
             posY=false;
@@ -59,8 +62,12 @@ class cha{
         else{
             posY=false;
         }
+        var vel = this.personbody.velocity;
         if(keyIsDown(RIGHT_ARROW)){
-            this.personbody.applyImpulse([30,0]);
+            this.personbody.velocity = p2.vec2.fromValues(300, vel[1]);
+        }
+        else {
+            this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
         }
         if(keyIsDown(LEFT_ARROW)){
             this.personbody.applyImpulse([-30,0]);
