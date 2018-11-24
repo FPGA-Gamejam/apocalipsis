@@ -6,10 +6,10 @@ class HUD {
 		};
 		this.stats = {
 			//stats rectangle
-			x: this.screenDimentions - width,
+			x: this.screenDimentions.width - 201,
 			y: 0,
-			width: 300,
-			heigth: 300,
+			width: 200,
+			heigth: 75,
 			//stats
 			cpu: 0,
 			ram: 0,

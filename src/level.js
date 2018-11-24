@@ -2,7 +2,7 @@
 	constructor(svg) {
 		this.world = new p2.World({gravity: [0, 90]});
 		this.terrain = new Terrain(this, svg);
-		this.camera = new Camera();
+		this.parallax = new Parallax();
 
 		//**ENEMIES**
 		this.enemyarray = [];
@@ -17,17 +17,27 @@
 			}
 		}, this);
 
-		this.cha = new cha(100, 100, 100, this.world);
+		this.cha = new cha(100, 100, 50, this.world);
 	}
 	update(dt) {
 		this.world.step(dt);
 		this.cha.update(dt);
-		this.camera.target(this.cha.personbody.position[0], this.cha.personbody.position[1])
-		this.camera.update(dt);
+		var cameray = this.cha.personbody.position[1];
+		if (cameray > 450) {cameray = 450};
+		this.parallax.target(this.cha.personbody.position[0], cameray, 0);
+		this.parallax.target(this.cha.personbody.position[0], cameray, 1);
+		this.parallax.update(dt);
 	}
 	draw() {
+		//fondo
 		push();
-		this.camera.draw();
+		this.parallax.draw(1);
+		var dist = this.parallax.layer[1].dist;
+		image(level3_bg, -1400, -720 * (1 / dist), 3200 * dist, 900 * dist);
+		pop();
+		//nivel
+		push();
+		this.parallax.draw(0);
 		drawBody(this.terrain.body);
 		this.enemyarray.forEach(function(enemy) {
 			drawBody(enemy);

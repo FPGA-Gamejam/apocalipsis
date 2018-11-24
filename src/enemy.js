@@ -1,5 +1,5 @@
 class Enemy {
-	constructor() {
+	constructor(level) {
 		
 	}
 }
