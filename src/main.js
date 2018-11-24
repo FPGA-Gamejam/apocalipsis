@@ -7,7 +7,7 @@ function preload() {
 }
 
 function setup() {
-	canvas = createCanvas(1600, 3000);
+	canvas = createCanvas(1280, 720);
 	canvas.drawingContext.imageSmoothingEnabled = false;
 
 	level = new Level(level3_svg);
@@ -16,7 +16,7 @@ function setup() {
 
 function draw() {
 	//logica
-	level.world.step(1 / 60);
+	level.world.step(TIMESTEP);
 	level.update(TIMESTEP);
 	hud.update(TIMESTEP);
 

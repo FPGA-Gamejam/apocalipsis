@@ -30,7 +30,7 @@ function drawBody(body) {
 			push();
 			translate(body.position[0], body.position[1]);
 			rotate(body.angle);
-			rect(0 - shape.length / 2, 0 - shape.radius, shape.length + shape.radius, shape.radius * 2, shape.radius);
+			rect(0 - shape.length / 2 - shape.radius, 0 - shape.radius, shape.length + shape.radius, shape.radius * 2, shape.radius);
 			pop();
 		}
 	}
