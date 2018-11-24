@@ -25,9 +25,9 @@
      borderopacity="1"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="1537.0177"
-     inkscape:cy="160.23544"
+     inkscape:zoom="0.25"
+     inkscape:cx="3575.6664"
+     inkscape:cy="894.98365"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="true"
@@ -3374,7 +3374,7 @@
     <rect
        style="fill:#0000ff;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="rect6147"
-       width="800"
+       width="1100"
        height="100"
        x="3500"
        y="-1500"
@@ -3391,11 +3391,21 @@
        id="path6151"
        inkscape:connector-curvature="0"
        inkscape:label="floor_cubes" />
+    <rect
+       transform="translate(0,-58.874992)"
+       style="display:inline;fill:#0000ff;fill-opacity:1;stroke:none;stroke-opacity:1"
+       id="rect6153"
+       width="100"
+       height="1600"
+       x="4600"
+       y="-1441.125"
+       inkscape:label="floor_common" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer6"
-     inkscape:label="Door">
+     inkscape:label="Door"
+     style="display:inline">
     <rect
        style="display:inline;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="rect5596"
@@ -3416,7 +3426,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="Player">
+     inkscape:label="Player"
+     style="display:inline">
     <ellipse
        style="fill:#00ffff;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="path5171"
@@ -3429,7 +3440,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="Enemies">
+     inkscape:label="Enemies"
+     style="display:inline">
     <circle
        style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="path5186"
@@ -3455,7 +3467,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="Items">
+     inkscape:label="Items"
+     style="display:inline">
     <circle
        style="fill:#00ff00;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="path5176"
