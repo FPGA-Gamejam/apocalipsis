@@ -6,9 +6,11 @@ function drawBody(body) {
 		var worldVertices = [];
 		var relative_pos = body.shapes[k].position;
 		var shape = body.shapes[k];
+		var drawpos = [];
+		var v;
 		if (shape.vertices) {
 			for (var i = 0; i != shape.vertices.length; i++) {
-				var v = shape.vertices[i];
+				v = shape.vertices[i];
 				worldVertices[i] = [];
 				body.toWorldFrame(worldVertices[i], [v[0] + relative_pos[0], v[1] + relative_pos[1]]);
 			}
@@ -18,20 +20,10 @@ function drawBody(body) {
 			}
 			endShape(CLOSE);
 		}
-		else if (shape.type == p2.Shape.CIRCLE) {
-			var drawpos = [];
+		else if (shape.type == p2.Shape.CIRCLE || shape.type == p2.Shape.CAPSULE) {
 			body.toWorldFrame(drawpos, [relative_pos[0], relative_pos[1]]);
 			ellipse(drawpos[0], drawpos[1], shape.radius * 2);
 			line(drawpos[0], drawpos[1], drawpos[0] + Math.cos(body.angle) * shape.radius, drawpos[1] + Math.sin(body.angle) * shape.radius);
-		}
-		else if (shape.type == p2.Shape.CAPSULE) {
-			var drawpos = [];
-			body.toWorldFrame(drawpos, [relative_pos[0], relative_pos[1]]);
-			push();
-			translate(body.position[0], body.position[1]);
-			rotate(body.angle);
-			rect(0 - shape.length / 2 - shape.radius, 0 - shape.radius, shape.length + shape.radius, shape.radius * 2, shape.radius);
-			pop();
 		}
 	}
 }

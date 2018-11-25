@@ -3,23 +3,23 @@ class cha_anim {
 		this.cha = cha;
 		this.anims = {
 			idle: [
-				{image: panda_stan, time: 0.5, offset: [0, 47]},
+				{image: panda_stan, time: 0.5, offset: [0, 73]},
 			],
 			run: [
-				{image: panda_stan, time: 0.1, offset: [0, 47]},
-				{image: panda_mov, time: 0.1, offset: [0, 47]},
+				{image: panda_stan, time: 0.1, offset: [0, 73]},
+				{image: panda_mov, time: 0.1, offset: [0, 73]},
 			],
 			fall: [
-				{image: panda_fall, time: 0.1, offset: [0, 47]},
+				{image: panda_fall, time: 0.1, offset: [0, 73]},
 			],
 			air: [
-				{image: panda_jump, time: 0.1, offset: [0, 47]},
+				{image: panda_jump, time: 0.1, offset: [0, 73]},
 			],
 			punch: [
-				{image: panda_punch, time: 0.1, offset: [0, 47]},
+				{image: panda_punch, time: 0.1, offset: [0, 73]},
 			],
 			damage: [
-				{image: panda_damage, time: 0.1, offset: [0, 47]},
+				{image: panda_damage, time: 0.1, offset: [0, 73]},
 			]
 		}
 		this.face = 1;

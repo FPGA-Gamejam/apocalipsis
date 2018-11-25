@@ -1,10 +1,17 @@
 class Enemy {
-	constructor(level, x, y, life) {
+	constructor(level, x, y, life, kinematic) {
 		this.level = level;
         this.stun = false;
         this.stuntime = 0;
         //fisicas
-        this.body = new p2.Body({mass: 5, position: [x, y], fixedRotation: true});
+				if (!kinematic) {
+					  this.body = new p2.Body({mass: 5, position: [x, y], fixedRotation: true});
+				}
+				else {
+					console.log("hola");
+					this.body = new p2.Body({type: p2.Body.KINEMATIC, mass: 5, position: [x, y], fixedRotation: true});
+				}
+
         this.shape = new p2.Circle({radius: 30});
         this.body.addShape(this.shape);
         this.level.world.addBody(this.body);
@@ -21,7 +28,7 @@ class Enemy {
         this.level.world.addConstraint(constraint);
 
         this.health = life;
-        
+
         this.level.world.on("beginContact",function(event){
             var sensors = [
                 this.level.cha.hitbody, this.level.cha.hitbody_i
@@ -33,9 +40,9 @@ class Enemy {
                 else if (event.bodyB == this.body) {
                     this.level.cha.en_sensor.push(this);
                 }
-            } 
+            }
         }, this);
-        
+
         this.level.world.on("endContact",function(event){
             var sensors = [
                 this.level.cha.hitbody, this.level.cha.hitbody_i
@@ -56,8 +63,6 @@ class Enemy {
 
 	}
 	draw() {
-		drawBody(this.body);
-		//drawBody(this.sensor.body);
-        image(troyanpike_idle, this.body.position[0] - 50, this.body.position[1] - 100);
+
 	}
 }
