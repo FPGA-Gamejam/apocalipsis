@@ -21,6 +21,9 @@ function preload() {
 	boss_stan_1		  = loadImage("resources/sprites/boss_stan1.png")
 	boss_stan_2		  = loadImage("resources/sprites/boss_stan2.png")
 	boss_stan_3		  = loadImage("resources/sprites/boss_stan3.png")
+	boss_tacle_1		  = loadImage("resources/sprites/boss_tacle1.png")
+	boss_tacle_2		  = loadImage("resources/sprites/boss_tacle2.png")
+	boss_tacle_3		  = loadImage("resources/sprites/boss_tacle3.png")
 	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
 	troyanroll_idle = loadImage("resources/sprites/TroyanPike-prev1.png")
 	tile = loadImage("resources/sprites/tile_100_b.png");
