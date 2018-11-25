@@ -30,7 +30,7 @@ class cha{
         world.addBody(this.personbody);
         
         //sensor
-        this.sensorbody = new p2.Body({mass: 1, position: [this.x, this.y], fixedRotation: true});
+        this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true});
         this.sensorshape = new p2.Box({width: 60, height: 20});
         this.sensorshape.sensor=true;
         this.sensorbody.addShape(this.sensorshape);
@@ -42,7 +42,7 @@ class cha{
         sensors.push(this.sensorbody);
         
         //puño derecha
-        this.hitbody = new p2.Body({mass: 1, position: [this.x, this.y], fixedRotation: true});
+        this.hitbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true});
         this.hitshape = new p2.Circle({radius: 20});
         this.hitshape.sensor=true;
         this.hitbody.addShape(this.hitshape);
@@ -54,7 +54,7 @@ class cha{
         sensors.push(this.hitbody);
         
         //puño izquierda
-        this.hitbody_i = new p2.Body({mass: 1, position: [this.x, this.y], fixedRotation: true});
+        this.hitbody_i = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true});
         this.hitshape_i = new p2.Circle({radius: 20});
         this.hitshape_i.sensor=true;
         this.hitbody_i.addShape(this.hitshape_i);
@@ -77,6 +77,7 @@ class cha{
                         posY=false;
                     }
                 }
+
             }
             if(event.bodyA==sensors[1] || event.bodyB==sensors[1]){
                 pum_d=false;
@@ -119,10 +120,14 @@ class cha{
             posY=false;
             if(contact==false){
                 double=true;
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
+                //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
+                this.personbody.applyImpulse([0, -vel[1]]);
+                this.personbody.applyImpulse([0, -1500]);
             }
             else{
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000); //-1000
+                //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000); //-1000
+                 this.personbody.applyImpulse([0, -vel[1]]);
+                 this.personbody.applyImpulse([0, -1500]);
             }
         }
         else{

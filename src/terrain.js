@@ -7,15 +7,6 @@ class Terrain {
 		this.solidos.forEach(function(obj) {
 			switch (obj.type) {
 				case "rect":
-					var x = obj.vertices[0][0];
-					var y = obj.vertices[0][1];
-					var width = obj.vertices[2][0] - x;
-					var height = obj.vertices[2][1] - y;
-					for (var xx = x; xx < width + x; xx += 100) {
-						for (var yy = y; yy < height + y; yy += 100) {
-							//this.graphic.image(tile, xx, yy, 100, 100);
-						}
-					}
 				case "path":
 					this.body.fromPolygon(obj.vertices);
 					break;

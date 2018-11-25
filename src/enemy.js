@@ -1,6 +1,8 @@
 class Enemy {
 	constructor(level, x, y) {
 		this.level = level;
+
+        //fisicas
         this.body = new p2.Body({mass: 5, position: [x, y], fixedRotation: true});
         this.shape = new p2.Circle({radius: 30});
         this.body.addShape(this.shape);
@@ -16,6 +18,8 @@ class Enemy {
             localPivotA: [0, this.shape.radius]
         });
         this.level.world.addConstraint(constraint);
+
+        this.health = 100;
 	}
 	update(dt) {
 		
