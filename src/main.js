@@ -26,10 +26,6 @@ function setup() {
 	//fill(0, 80, 0);
 }
 
-function reset(){
-    level.world.clear();
-}
-
 function draw() {
 	//logica
 	level.world.step(TIMESTEP);
@@ -39,12 +35,13 @@ function draw() {
 	//dibujado
 	background(255);
 	level.draw();
-	hud.draw();
+	hud.draw(level.cha.health);
 
 	text("(0, 0)", 0, 10);
 	text("(400, 300)", 400, 310);
 	text("(800, 600)", 800, 610);
 
 	text("FPS: " + frameRate().toFixed(2), 40, 10);
+    
 }
 
