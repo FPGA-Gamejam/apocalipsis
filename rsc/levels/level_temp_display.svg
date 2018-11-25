@@ -172,7 +172,6 @@
        y="700"
        inkscape:label="tube" />
     <rect
-       transform="translate(0,-58.874992)"
        style="display:inline;fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect9806"
        width="200"
@@ -181,7 +180,6 @@
        y="658.875"
        inkscape:label="panel" />
     <rect
-       transform="translate(0,-58.874992)"
        style="display:inline;fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect9808"
        width="200"
@@ -198,7 +196,6 @@
        y="600"
        inkscape:label="tube" />
     <rect
-       transform="translate(0,-58.874992)"
        style="display:inline;fill:#00c0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect10045"
        width="1600"
