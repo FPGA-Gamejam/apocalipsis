@@ -1,7 +1,8 @@
 class Enemy {
 	constructor(level, x, y) {
 		this.level = level;
-
+        this.stun = false;
+        this.stuntime = 0;
         //fisicas
         this.body = new p2.Body({mass: 5, position: [x, y], fixedRotation: true});
         this.shape = new p2.Circle({radius: 30});
@@ -55,7 +56,7 @@ class Enemy {
 
 	}
 	draw() {
-		//drawBody(this.body);
+		drawBody(this.body);
 		//drawBody(this.sensor.body);
         image(troyanpike_idle, this.body.position[0] - 50, this.body.position[1] - 100);
 	}

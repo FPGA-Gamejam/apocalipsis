@@ -3,8 +3,6 @@ var contact=true;
 var double=false; //false sin salto, true doble salto utilizado
 var sensors=[];
 var hit=false;
-var pum_d=false;
-var pum_i=false;
 var posX=true; //true derecha, false izquierda
 var count=0;
 var relY = true;
@@ -14,6 +12,8 @@ var canJumpFirst = false;
 var canJumpSecond = false;
 var canJump = true;
 var hit = false;
+var pum_d=false;
+var pum_i=false;
 
 function keyPressed(){
     if(keyCode == UP_ARROW){
@@ -82,6 +82,8 @@ class cha{
         
         this.world=world;
         this.level=level;
+        
+        this.health=10;
 
         this.world.on("endContact",function(event){
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0] ){
@@ -167,27 +169,26 @@ class cha{
                 }
             }
         }
-        //golpe
-        if(hit==true && pum_d==true && posX==true){
-            console.log("golpe derecha", timer);
-            timer=timer-dt;
-            if (timer <= 0) {
-                hit=false;
-            }
-        }
-        if(hit==true && pum_i==true && posX==false){
-            console.log("golpe izquierda", timer);
-            timer=timer-dt;
-            if (timer <= 0) {
-                hit=false;
-            }
-        }
         this.cha_anim.update(dt, contact)
 
         if (hit) {
             for (var i = 0; i != this.en_sensor.length; i++) {
                 var enemy = this.en_sensor[i];
                 enemy.health -= 1;
+                //var ang = Math.atan2(this.personbody.position[1]-enemy.body.position[1],this.personbody.position[0]-enemy.body.position[0]);
+                //console.log(ang);
+                
+                var valor=1;
+                if(posX=true){
+                    valor=1;
+                }
+                else{
+                    valor=-1;
+                }
+                
+                enemy.body.applyImpulse(10000*valor, 0);
+                enemy.stun = true;
+                enemy.stuntime = 0.5;
             }
             hit = false;
         }
