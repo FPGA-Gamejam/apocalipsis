@@ -25,11 +25,11 @@
      borderopacity="1"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.11313708"
-     inkscape:cx="20045.444"
-     inkscape:cy="5053.1174"
+     inkscape:zoom="0.45254834"
+     inkscape:cx="2854.109"
+     inkscape:cy="464.51842"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer7"
      showgrid="true"
      units="px"
      inkscape:pagecheckerboard="false"
@@ -34566,6 +34566,17 @@
        x="3600"
        y="-200"
        inkscape:label="cube" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="rails">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m -4400,500 h 3100"
+       id="path6809"
+       inkscape:connector-curvature="0"
+       inkscape:label="rail" />
   </g>
   <g
      inkscape:groupmode="layer"
