@@ -1,29 +1,53 @@
  class Level {
 	constructor(svg) {
-		this.world = new p2.World({gravity: [0, 200]});
+		this.world = new p2.World({gravity: [0, 700]});
 		this.terrain = new Terrain(this, svg);
 		this.parallax = new Parallax();
+        this.cameraXoffset = 0;
+        this.cameraYoffset = 0;
 
 		//**ENEMIES**
 		this.enemyarray = [];
-		var enemies = svg.layer("Enemies");
+		var enemies = svg.layer("npc");
 		enemies.forEach(function(obj) {
 			if (obj.type == "circle") {
-				var enemy = new Enemy(this, obj.x, obj.y);
+				var enemy = new Troyanpike(this, obj.x, obj.y);
 	        	this.enemyarray.push(enemy);
 			}
 		}, this);
 
-		this.cha = new cha(100, 100, 50, this.world);
+		this.cha = new cha(this, 300, 500, 50);
 	}
 	update(dt) {
 		this.world.step(dt);
 		this.cha.update(dt);
+        if (keyIsDown(73)) {
+			this.cameraYoffset -= 50;
+		}
+		else if (keyIsDown(75)) {
+			this.cameraYoffset += 50;
+		}
+		if (keyIsDown(74)) {
+			this.cameraXoffset -= 50;
+		}
+		else if (keyIsDown(76)) {
+			this.cameraXoffset += 50;
+		}
 		var cameray = this.cha.personbody.position[1];
 		if (cameray > 450) {cameray = 450};
-		this.parallax.target(this.cha.personbody.position[0], cameray, 0);
-		this.parallax.target(this.cha.personbody.position[0], cameray, 1);
+		this.parallax.target(this.cha.personbody.position[0] + this.cameraXoffset, cameray + this.cameraYoffset, 0);
+		this.parallax.target(this.cha.personbody.position[0] + this.cameraXoffset, cameray + this.cameraYoffset, 1);
 		this.parallax.update(dt);
+        this.enemyarray.forEach(function(enemy) {
+			enemy.update(dt);
+		});
+        for (var i=this.enemyarray.length-1;i!=-1;i--){
+            if(this.enemyarray[i].health==0){
+                this.world.removeBody(this.enemyarray[i].body);
+                delete this.enemyarray[i];
+                this.enemyarray.splice(i,1);
+            }
+        }
 	}
 	draw() {
 		//fondo
@@ -39,6 +63,7 @@
 		this.enemyarray.forEach(function(enemy) {
 			enemy.draw();
 		});
+		this.terrain.draw();
 		this.cha.draw();
 		pop();
 	}

@@ -2,9 +2,14 @@ var TIMESTEP = 1 / 60;
 var level3_svg, level3_bg, vcr;
 var level, hud;
 function preload() {
-	level3_svg = new svgParser("rsc/levels/level_1.svg");
+	level3_svg = new svgParser("rsc/levels/level_2.svg");
 	level3_bg = loadImage("resources/sprites/background_01.jpg");
 	vcr = loadFont("rsc/fonts/VCR.ttf")
+	panda_stan = loadImage("resources/sprites/Panda_stan.png");
+	panda_mov = loadImage("resources/sprites/Panda-mov.png");
+
+	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
+	tile = loadImage("resources/sprites/tile_100_b.png");
 }
 
 function setup() {
@@ -13,6 +18,7 @@ function setup() {
 
 	level = new Level(level3_svg);
 	hud = new HUD(level);
+	//fill(0, 80, 0);
 }
 
 function draw() {
