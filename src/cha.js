@@ -107,7 +107,6 @@ class cha{
             posX=true;
         }
         else if(keyIsDown(LEFT_ARROW)){
-            console.log("izquierda");
             this.personbody.velocity = p2.vec2.fromValues(-200, vel[1]);
             posX=false;
         }
@@ -120,10 +119,10 @@ class cha{
             posY=false;
             if(contact==false){
                 double=true;
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -900);
+                this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
             }
             else{
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -900); //-1000
+                this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000); //-1000
             }
         }
         else{
