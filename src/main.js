@@ -9,6 +9,7 @@ function preload() {
 	panda_mov = loadImage("resources/sprites/Panda-mov.png");
 
 	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
+	troyanroll_idle = loadImage("resources/sprites/TroyanPike-prev1.png")
 	tile = loadImage("resources/sprites/tile_100_b.png");
 }
 
