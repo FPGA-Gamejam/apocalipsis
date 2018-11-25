@@ -18,7 +18,13 @@ class Troyanpike extends Enemy{
 
 	}
 
-	troyanupdate(dt) {
+	update(dt) {
+        if (this.stun) {
+            this.stuntime -= dt;
+            if (this.stuntime <= 0) {
+                this.stun = false;
+            }
+        };
 		if( this.charNear() ){
 			if( this.level.cha.personbody.position[0] < this.body.position[0] )
 				this.body.velocity[0]= -this.chaseVelocity ;

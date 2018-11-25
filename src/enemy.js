@@ -1,9 +1,8 @@
-var active=false;
-
 class Enemy {
 	constructor(level, x, y) {
 		this.level = level;
-
+        this.stun = false;
+        this.stuntime = 0;
         //fisicas
         this.body = new p2.Body({mass: 5, position: [x, y], fixedRotation: true});
         this.shape = new p2.Circle({radius: 30});
@@ -28,8 +27,11 @@ class Enemy {
                 this.level.cha.hitbody, this.level.cha.hitbody_i
             ];
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0] || event.bodyA==sensors[1] || event.bodyB==sensors[1]){
-                if((event.bodyA==this.body || event.bodyB==this.body)){
-                    active=true;
+                if (event.bodyA == this.body) {
+                    this.level.cha.en_sensor.push(this);
+                }
+                else if (event.bodyB == this.body) {
+                    this.level.cha.en_sensor.push(this);
                 }
             } 
         }, this);
@@ -39,24 +41,22 @@ class Enemy {
                 this.level.cha.hitbody, this.level.cha.hitbody_i
             ];
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0] || event.bodyA==sensors[1] || event.bodyB==sensors[1]){
-                if((event.bodyA==this.body || event.bodyB==this.body))
-                    active=false;
+                for (var i = this.level.cha.en_sensor.length - 1; i != -1; i--) {
+                    if (event.bodyA == this.body) {
+                    this.level.cha.en_sensor.splice(i, 1);
+                    }
+                    else if (event.bodyB == this.body) {
+                        this.level.cha.en_sensor.splice(i, 1);
+                    }
                 }
+            }
         }, this);
 	}
 	update(dt) {
-        if (this.troyanupdate) {this.troyanupdate(dt)};
-        //console.log(active, hit);
-        if(active==true){
-            console.log(hit);
-            if(hit==true){
-                this.health-=1;
-                console.log(this.health);
-            }
-        }
+
 	}
 	draw() {
-		//drawBody(this.body);
+		drawBody(this.body);
 		//drawBody(this.sensor.body);
         image(troyanpike_idle, this.body.position[0] - 50, this.body.position[1] - 100);
 	}

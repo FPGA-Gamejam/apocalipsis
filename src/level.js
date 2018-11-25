@@ -27,6 +27,13 @@
         this.enemyarray.forEach(function(enemy) {
 			enemy.update(dt);
 		});
+        for (var i=this.enemyarray.length-1;i!=-1;i--){
+            if(this.enemyarray[i].health==0){
+                this.world.removeBody(this.enemyarray[i].body);
+                delete this.enemyarray[i];
+                this.enemyarray.splice(i,1);
+            }
+        }
 	}
 	draw() {
 		//fondo
