@@ -110,7 +110,6 @@ class cha{
         this.cha_anim = new cha_anim(this);
     }
     update(dt){
-        console.log(this.en_sensor.length);
         var vel = this.personbody.velocity;
         var pos = this.personbody.position;
         if(keyIsDown(RIGHT_ARROW)){
@@ -189,7 +188,6 @@ class cha{
             for (var i = 0; i != this.en_sensor.length; i++) {
                 var enemy = this.en_sensor[i];
                 enemy.health -= 1;
-                console.log(enemy.health);
             }
             hit = false;
         }
