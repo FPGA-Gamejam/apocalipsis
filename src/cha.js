@@ -13,6 +13,7 @@ var jumpTimeSecond = 0.05;
 var canJumpFirst = false;
 var canJumpSecond = false;
 var canJump = true;
+var timer = 2/60;
 
 function keyPressed(){
     if(keyCode == UP_ARROW){
@@ -21,6 +22,7 @@ function keyPressed(){
     }
     if(key == 'a'){
         hit=true;
+        timer=2/60;
     }
 }
 
@@ -198,12 +200,18 @@ class cha{
 
         //golpe
         if(hit==true && pum_d==true && posX==true){
-            console.log("golpe derecha");
-            hit=false;
+            console.log("golpe derecha", timer);
+            timer=timer-dt;
+            if (timer <= 0) {
+                hit=false;
+            }
         }
         if(hit==true && pum_i==true && posX==false){
-            console.log("golpe izquierda");
-            hit=false;
+            console.log("golpe izquierda", timer);
+            timer=timer-dt;
+            if (timer <= 0) {
+                hit=false;
+            }
         }
         this.cha_anim.update(dt, contact)
     }

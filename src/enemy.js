@@ -49,7 +49,7 @@ class Enemy {
         if(active==true){
             console.log(hit);
             if(hit==true){
-                this.health-=-1;
+                this.health-=1;
                 console.log(this.health);
             }
         }
