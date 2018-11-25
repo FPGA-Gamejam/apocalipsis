@@ -5,7 +5,9 @@ function preload() {
 	level3_svg = new svgParser("rsc/levels/level_2.svg");
 	level3_bg = loadImage("resources/sprites/background_01.jpg");
 	vcr = loadFont("rsc/fonts/VCR.ttf")
-	panda_idle = loadImage("resources/sprites/Panda-prev1-mov_stat1.png");
+	panda_stan = loadImage("resources/sprites/Panda_stan.png");
+	panda_mov = loadImage("resources/sprites/Panda-mov.png");
+
 	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
 	tile = loadImage("resources/sprites/tile_100_b.png");
 }

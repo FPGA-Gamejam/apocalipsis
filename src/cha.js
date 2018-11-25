@@ -205,7 +205,7 @@ class cha{
             console.log("golpe izquierda");
             hit=false;
         }
-        this.cha_anim.update(dt)
+        this.cha_anim.update(dt, contact)
     }
     draw(){
         drawBody(this.personbody);
