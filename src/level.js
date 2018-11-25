@@ -5,7 +5,9 @@
 		this.parallax = new Parallax();
         this.cameraXoffset = 0;
         this.cameraYoffset = 0;
-        this.life_roll=3;
+        this.life_roll=2;
+        this.life_pike=3;
+        this.life_boss=10;
         this.svg=svg;
 
 		//**ENEMIES**
@@ -17,10 +19,10 @@
 					var enemy = new Troyanroll(this, obj.x, obj.y, this.life_roll);
 				}
 				else if (obj.label == "enemy_fly") {
-					var enemy = new Troyanpike(this, obj.x, obj.y, this.life_roll);
+					var enemy = new Troyanpike(this, obj.x, obj.y, this.life_pike);
 				}
 				else if (obj.label == "enemy_boss") {
-					var enemy = new Troyanboss(this, obj.x, obj.y, this.life_roll);
+					var enemy = new Troyanboss(this, obj.x, obj.y, this.life_boss);
 				}
 	        	this.enemyarray.push(enemy);
 			}
