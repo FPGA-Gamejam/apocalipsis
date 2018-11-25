@@ -1,6 +1,6 @@
  class Level {
 	constructor(svg) {
-		this.world = new p2.World({gravity: [0, 200]});
+		this.world = new p2.World({gravity: [0, 1000]});
 		this.terrain = new Terrain(this, svg);
 		this.parallax = new Parallax();
 
@@ -14,7 +14,7 @@
 			}
 		}, this);
 
-		this.cha = new cha(100, 100, 50, this.world);
+		this.cha = new cha(300, 500, 50, this.world);
 	}
 	update(dt) {
 		this.world.step(dt);
@@ -39,6 +39,7 @@
 		this.enemyarray.forEach(function(enemy) {
 			enemy.draw();
 		});
+		this.terrain.draw();
 		this.cha.draw();
 		pop();
 	}
