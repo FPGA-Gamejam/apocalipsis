@@ -45,6 +45,7 @@ class Enemy {
         }, this);
 	}
 	update(dt) {
+        if (this.troyanupdate) {this.troyanupdate(dt)};
         //console.log(active, hit);
         if(active==true){
             console.log(hit);
