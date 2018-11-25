@@ -1,6 +1,7 @@
 var TIMESTEP = 1 / 60;
 var level3_svg, level3_bg, vcr;
 var level, hud;
+var splashTime = 3;
 function preload() {
 	level3_svg = new svgParser("rsc/levels/level_2.svg");
 	level3_bg = loadImage("resources/sprites/background_01.jpg");
@@ -27,6 +28,13 @@ function preload() {
 	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
 	troyanroll_idle = loadImage("resources/sprites/TroyanPike-prev1.png")
 	tile = loadImage("resources/sprites/tile_100_b.png");
+
+	fder = loadImage("resources/sprites/in_der.png");
+	fizq = loadImage("resources/sprites/in_izq.png");
+	fup = loadImage("resources/sprites/in_up.png");
+	fatt = loadImage("resources/sprites/in_att.png");
+
+	splash = loadImage("resources/sprites/main.jpg");
 }
 
 function setup() {
@@ -39,6 +47,11 @@ function setup() {
 }
 
 function draw() {
+	if (splashTime > 0) {
+		splashTime = splashTime - 1/60;
+		image(splash, 0, 0, 1600, 900);
+		return;
+	}
 	//logica
 	level.world.step(TIMESTEP);
 	level.update(TIMESTEP);
@@ -48,11 +61,5 @@ function draw() {
 	background(255);
 	level.draw();
 	hud.draw(level.cha.health);
-
-	text("(0, 0)", 0, 10);
-	text("(400, 300)", 400, 310);
-	text("(800, 600)", 800, 610);
-
-	text("FPS: " + frameRate().toFixed(2), 40, 10);
 
 }

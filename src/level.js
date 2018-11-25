@@ -28,7 +28,7 @@
 			}
 		}, this);
 
-		this.cha = new cha(this, 16500, -5500, 25);
+		this.cha = new cha(this, -4000, 300, 25);
         this.reset=false;
 	}
 	update(dt) {
@@ -100,6 +100,15 @@
 		});
 		this.terrain.draw();
 		this.cha.draw();
+
+		//tutorial
+		//var fizq = [-4000, 400];
+
+		image(fizq, -4000, 400, 100, 100);
+		image(fder, -3800, 400, 100, 100);
+		image(fup, -3900, 300, 100, 100);
+		image(fatt, -3900, 400, 100, 100);
+
 		pop();
 	}
 }

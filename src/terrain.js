@@ -24,19 +24,19 @@ class Terrain {
 				push();
 				switch (obj.label) {
 					case "background_border":
-						fill(90, 35, 29);
+						fill(153/2,101/2,21/2);
 						break;
 					case "background_filler":
-						fill(30, 60, 15);
+						fill(107/2,142/2,35/2);
 						break;
-					case "poly":
-						fill(0, 255, 0);
+					case "poli":
+						fill(219/2,16/2,87/2);
 						break;
 					case "tube":
-						fill(50, 128, 40);
+						fill(47/2,79/2,79/2);
 						break;
 					case "panel":
-						fill(30, 60, 15);
+						fill(178/2,34/2,34/2);
 						break;
 				}
 				switch (obj.type) {
