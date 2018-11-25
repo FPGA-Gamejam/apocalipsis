@@ -12,12 +12,20 @@
 		var enemies = svg.layer("npc");
 		enemies.forEach(function(obj) {
 			if (obj.type == "circle") {
-				var enemy = new Troyanroll(this, obj.x, obj.y, this.life_roll);
+				if (obj.label == "enemy_ground") {
+					var enemy = new Troyanroll(this, obj.x, obj.y, this.life_roll);
+				}
+				else if (obj.label == "enemy_fly") {
+					var enemy = new Troyanpike(this, obj.x, obj.y, this.life_roll);
+				}
+				else if (obj.label == "enemy_boss") {
+					var enemy = new Troyanboss(this, obj.x, obj.y, this.life_roll);
+				}
 	        	this.enemyarray.push(enemy);
 			}
 		}, this);
 
-		this.cha = new cha(this, 300, 500, 50);
+		this.cha = new cha(this, 16900, -5500, 50);
 	}
 	update(dt) {
 		this.world.step(dt);
