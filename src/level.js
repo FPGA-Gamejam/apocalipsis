@@ -39,6 +39,7 @@
 		this.enemyarray.forEach(function(enemy) {
 			enemy.draw();
 		});
+		this.terrain.draw();
 		this.cha.draw();
 		pop();
 	}

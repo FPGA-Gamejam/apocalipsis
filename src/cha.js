@@ -37,7 +37,6 @@ class cha{
 
         this.world.on("endContact",function(event){
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0] ){
-                 console.log(event);
                 contact=false;
                 if(double==true){
                     posY=false;
