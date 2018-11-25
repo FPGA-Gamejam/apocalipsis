@@ -6,6 +6,6 @@ class Troyanboss extends Enemy {
 
 	}
 	draw() {
-		drawBody(this.body);
+		//drawBody(this.body);
 	}
 }

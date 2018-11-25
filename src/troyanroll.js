@@ -32,9 +32,7 @@ class Troyanroll extends Enemy{
 
 		this.pastNear = this.nearNow;
 	}
-	draw() {
-		image(troyanroll_idle, this.body.position[0] - 50, this.body.position[1] - 100);
-	}
+	
 
 	charNear(stun){
 		if( Math.abs(this.level.cha.personbody.position[0] - this.body.position[0]) < this.deltaChar)
@@ -52,5 +50,9 @@ class Troyanroll extends Enemy{
 		else{
 			return false;
 		}
+	}
+
+	draw() {
+		image(troyanroll_idle, this.body.position[0] - 50, this.body.position[1] - 100);
 	}
 }

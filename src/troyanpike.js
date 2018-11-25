@@ -59,4 +59,8 @@ class Troyanpike extends Enemy{
 		}
 		return false;
 	}
+
+	draw() {
+		image(troyanpike_idle, this.body.position[0] - 50, this.body.position[1] - 100);
+	}
 }

@@ -25,7 +25,7 @@
 			}
 		}, this);
 
-		this.cha = new cha(this, 16900, -5500, 50);
+		this.cha = new cha(this, 300, 400, 50);
 	}
 	update(dt) {
 		this.world.step(dt);
@@ -48,7 +48,7 @@
 		this.parallax.target(this.cha.personbody.position[0] + this.cameraXoffset, cameray + this.cameraYoffset, 1);
 		this.parallax.update(dt);
         this.enemyarray.forEach(function(enemy) {
-			enemy.update(dt);
+        		enemy.update(dt);
 		});
         for (var i=this.enemyarray.length-1;i!=-1;i--){
             if(this.enemyarray[i].health==0){
@@ -68,7 +68,7 @@
 		//nivel
 		push();
 		this.parallax.draw(0);
-		drawBody(this.terrain.body);
+		//drawBody(this.terrain.body);
 		this.enemyarray.forEach(function(enemy) {
 			enemy.draw();
 		});
