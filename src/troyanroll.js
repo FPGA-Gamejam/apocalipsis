@@ -53,6 +53,6 @@ class Troyanroll extends Enemy{
 	}
 
 	draw() {
-		image(troyanroll_idle, this.body.position[0] - 50, this.body.position[1] - 100);
+		image(troyanroll_idle, this.body.position[0] - 50, this.body.position[1] - 50);
 	}
 }

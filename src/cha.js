@@ -45,14 +45,14 @@ class cha{
         //char
         this.personbody = new p2.Body({mass: 5, position: [this.x, this.y], fixedRotation: true});
         this.personshape = new p2.Circle({radius: this.r});
-        this.personshape2 = new p2.Circle({radius: this.r});
+        this.personbox = new p2.Box({width: 50, height: 110})
         this.personbody.addShape(this.personshape);
-        this.personbody.addShape(this.personshape2);
+        this.personbody.addShape(this.personbox, [0, -55]);
         this.level.world.addBody(this.personbody);
         
         //sensor
         this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
-        this.sensorshape = new p2.Box({width: 60, height: 20});
+        this.sensorshape = new p2.Box({width: 40, height: 10});
         this.sensorshape.sensor=true;
         this.sensorbody.addShape(this.sensorshape);
         this.level.world.addBody(this.sensorbody);
@@ -64,9 +64,9 @@ class cha{
         
         //puño derecha
         this.hitbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
-        this.hitshape = new p2.Circle({radius: 20});
+        this.hitshape = new p2.Box({width: 60, height: 90});
         this.hitshape.sensor=true;
-        this.hitbody.addShape(this.hitshape);
+        this.hitbody.addShape(this.hitshape, [0, -50]);
         this.level.world.addBody(this.hitbody);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.hitbody, {
             localPivotA: [70, -10]
@@ -76,9 +76,9 @@ class cha{
         
         //puño izquierda
         this.hitbody_i = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
-        this.hitshape_i = new p2.Circle({radius: 20});
+        this.hitshape_i = new p2.Box({width: 60, height: 90});
         this.hitshape_i.sensor=true;
-        this.hitbody_i.addShape(this.hitshape_i);
+        this.hitbody_i.addShape(this.hitshape_i, [0, -50]);
         this.level.world.addBody(this.hitbody_i);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.hitbody_i, {
             localPivotA: [-70, -10]
