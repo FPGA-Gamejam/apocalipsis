@@ -26,8 +26,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.11313708"
-     inkscape:cx="17896.419"
-     inkscape:cy="5474.9672"
+     inkscape:cx="20045.444"
+     inkscape:cy="5053.1174"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="true"
@@ -32793,7 +32793,7 @@
     <rect
        style="fill:#00e0ff;fill-opacity:1"
        id="rect6579"
-       width="1700"
+       width="2100"
        height="500"
        x="16700"
        y="-6700"
@@ -32801,8 +32801,8 @@
     <rect
        style="fill:#00e0ff;fill-opacity:1"
        id="rect6577"
-       width="400"
-       height="3499.999"
+       width="800"
+       height="3500"
        x="13400"
        y="-5400"
        inkscape:label="background_filler" />
@@ -32945,9 +32945,9 @@
     <rect
        style="fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect12446"
-       width="600"
+       width="800"
        height="1600"
-       x="-5200"
+       x="-5400"
        y="-300"
        inkscape:label="background_filler" />
     <rect
@@ -33081,17 +33081,17 @@
     <rect
        style="fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect17622"
-       width="400"
+       width="800"
        height="2399.9998"
-       x="2800"
+       x="2400"
        y="-2700"
        inkscape:label="background_filler" />
     <rect
        style="fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect17624"
-       width="3600"
+       width="4000"
        height="400"
-       x="2800"
+       x="2400"
        y="-3100"
        inkscape:label="background_filler" />
     <rect
@@ -33634,7 +33634,7 @@
     <rect
        style="fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect23023"
-       width="400"
+       width="800"
        height="3200"
        x="11100"
        y="-1900"
@@ -33642,7 +33642,7 @@
     <rect
        style="fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect23025"
-       width="4800"
+       width="4400"
        height="400"
        x="6400"
        y="-3100"
@@ -33969,7 +33969,7 @@
        id="rect23025-4"
        width="2300"
        height="400"
-       x="11500"
+       x="11900"
        y="-1900"
        inkscape:label="background_filler" />
     <rect
@@ -33983,9 +33983,9 @@
     <rect
        style="display:inline;fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:1.98029506;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect23025-7"
-       width="400"
+       width="800"
        height="4600"
-       x="11200"
+       x="10800"
        y="-7300"
        inkscape:label="background_filler" />
     <rect
@@ -34167,16 +34167,16 @@
     <rect
        style="display:inline;fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect23025-5-6"
-       width="2200"
+       width="2600"
        height="600"
        x="16200"
        y="-7300"
        inkscape:label="background_filler" />
     <rect
        y="-5100"
-       x="15800"
+       x="15400"
        height="400"
-       width="2600"
+       width="3400"
        id="rect6276"
        style="display:inline;fill:#00e0ff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:label="background_filler" />
@@ -34537,15 +34537,15 @@
     <rect
        style="fill:#00e0ff;fill-opacity:1;stroke:none"
        id="rect6734"
-       width="400"
+       width="800"
        height="300"
-       x="15800"
+       x="15400"
        y="-5400"
        inkscape:label="background_filler" />
     <rect
        style="fill:#00e0ff;fill-opacity:1;stroke:none"
        id="rect6736"
-       width="400"
+       width="800"
        height="1100"
        x="18000"
        y="-6200"
