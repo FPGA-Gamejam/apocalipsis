@@ -17,6 +17,9 @@ class Troyanboss extends Enemy {
 		this.dtant = 0;
 		this.oscidir = 1;
 		this.osci    = 0;
+		this.tdraw= 0;
+		this.idle  = 0;
+		this.tackle = 0;
 	}
 	update(dt) {
 		this.stun = false;
@@ -24,21 +27,39 @@ class Troyanboss extends Enemy {
 		this.makeAction(dt);
 		this.movOsc();
 	}
-	draw() {
-		ellipse(this.body.position[0], this.body.position[1], 25);
-	}
+	draw(dt) {
+		this.tdraw=1/60+this.tdraw;
+		if(this.tdraw<0.2)
+				image(boss_stan_1,this.body.position[0], this.body.position[1]);
+		else if(this.tdraw<0.4)
+				image(boss_stan_2,this.body.position[0], this.body.position[1]);
+		else if(this.tdraw<0.6)
+				image(boss_stan_3,this.body.position[0], this.body.position[1]);
+		else{
+				image(boss_stan_3,this.body.position[0], this.body.position[1]);
+				this.tdraw= 0;
+		}
+
+			}
+
+
 
 	topLeft(){
-		if( this.leftX < this.body.position[0]-10 )
+		this.tackle = 0;
+		if( this.leftX < this.body.position[0]-10 ){
 			this.body.velocity[0]= -this.moveVelocityX ;
-		else if( this.leftX > this.body.position[0]+10 )
+			this.tackle = 1;
+		}
+		else if( this.leftX > this.body.position[0]+10 ){
 			this.body.velocity[0]= this.moveVelocityX ;
+			this.tackle = 1;
+		}
 		else
 			this.body.velocity[0]= 0 ;
 		if( this.topY < this.body.position[1]-10 )
-			this.body.velocity[1]= -this.moveVelocityY ;
+			this.body.velocity[1]= -this.moveVelocityY;
 		else if( this.topY > this.body.position[1]+10 )
-			this.body.velocity[1]= this.moveVelocityY ;
+			this.body.velocity[1]= this.moveVelocityY;
 		else
 			this.body.velocity[1]= 0 ;
 	}
