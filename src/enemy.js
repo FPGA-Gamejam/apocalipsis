@@ -1,5 +1,5 @@
 class Enemy {
-	constructor(level, x, y) {
+	constructor(level, x, y, life) {
 		this.level = level;
         this.stun = false;
         this.stuntime = 0;
@@ -20,7 +20,7 @@ class Enemy {
         });
         this.level.world.addConstraint(constraint);
 
-        this.health = 3;
+        this.health = life;
         
         this.level.world.on("beginContact",function(event){
             var sensors = [
