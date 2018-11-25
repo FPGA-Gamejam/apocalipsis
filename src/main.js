@@ -20,10 +20,14 @@ function preload() {
 function setup() {
 	canvas = createCanvas(1600, 900);
 	canvas.drawingContext.imageSmoothingEnabled = false;
-
-	level = new Level(level3_svg);
+    
+    level = new Level(level3_svg);
 	hud = new HUD(level);
 	//fill(0, 80, 0);
+}
+
+function reset(){
+    level.world.clear();
 }
 
 function draw() {
