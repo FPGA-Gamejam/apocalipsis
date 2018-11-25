@@ -120,7 +120,7 @@ class cha{
             posY=false;
             if(contact==false){
                 double=true;
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -600);
+                this.personbody.velocity = p2.vec2.fromValues(vel[0], -900);
             }
             else{
                 this.personbody.velocity = p2.vec2.fromValues(vel[0], -900); //-1000
