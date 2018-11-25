@@ -31,29 +31,30 @@ function keyReleased(){
 }
 
 class cha{
-    constructor (x, y, r, world){
+    constructor (level, x, y, r){
         this.x=x;
         this.y=y;
         this.r=r;
         
         this.en_sensor=[];
+        this.level=level;
 
         //char
         this.personbody = new p2.Body({mass: 5, position: [this.x, this.y], fixedRotation: true});
         this.personshape = new p2.Circle({radius: this.r});
         this.personbody.addShape(this.personshape);
-        world.addBody(this.personbody);
+        this.level.world.addBody(this.personbody);
         
         //sensor
         this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
         this.sensorshape = new p2.Box({width: 60, height: 20});
         this.sensorshape.sensor=true;
         this.sensorbody.addShape(this.sensorshape);
-        world.addBody(this.sensorbody);
+        this.level.world.addBody(this.sensorbody);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.sensorbody, {
             localPivotA: [0, 50]
         });
-        world.addConstraint(constraint);
+        this.level.world.addConstraint(constraint);
         sensors.push(this.sensorbody);
         
         //puño derecha
@@ -61,11 +62,11 @@ class cha{
         this.hitshape = new p2.Circle({radius: 20});
         this.hitshape.sensor=true;
         this.hitbody.addShape(this.hitshape);
-        world.addBody(this.hitbody);
+        this.level.world.addBody(this.hitbody);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.hitbody, {
             localPivotA: [70, -10]
         });
-        world.addConstraint(constraint);
+        this.level.world.addConstraint(constraint);
         sensors.push(this.hitbody);
         
         //puño izquierda
@@ -73,19 +74,16 @@ class cha{
         this.hitshape_i = new p2.Circle({radius: 20});
         this.hitshape_i.sensor=true;
         this.hitbody_i.addShape(this.hitshape_i);
-        world.addBody(this.hitbody_i);
+        this.level.world.addBody(this.hitbody_i);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.hitbody_i, {
             localPivotA: [-70, -10]
         });
-        world.addConstraint(constraint);
+        this.level.world.addConstraint(constraint);
         sensors.push(this.hitbody_i);
-        
-        this.world=world;
-        this.level=level;
         
         this.health=10;
 
-        this.world.on("endContact",function(event){
+        this.level.world.on("endContact",function(event){
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0] ){
                 count -= 1;
                 if (count <= 1) {
@@ -97,7 +95,7 @@ class cha{
 
             }
         });
-        this.world.on("beginContact",function(event){
+        this.level.world.on("beginContact",function(event){
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0]){
                 count += 1;
                 if (count > 1) {
@@ -107,7 +105,14 @@ class cha{
                 contact=true;
                 double=false;
             }
-        });
+            if(event.bodyA==this.personbody || event.bodyB==this.personbody){
+                for(var i=0; i!=this.level.enemyarray.length;i++){
+                    if(event.bodyA==this.level.enemyarray[i] || event.bodyB==this.level.enemyarray[i]){
+                        
+                    }
+                }
+            }
+        }, this);
 
         this.cha_anim = new cha_anim(this);
     }
@@ -175,20 +180,19 @@ class cha{
             for (var i = 0; i != this.en_sensor.length; i++) {
                 var enemy = this.en_sensor[i];
                 enemy.health -= 1;
-                //var ang = Math.atan2(this.personbody.position[1]-enemy.body.position[1],this.personbody.position[0]-enemy.body.position[0]);
-                //console.log(ang);
                 
                 var valor=1;
-                if(posX=true){
-                    valor=1;
+                if(posX==true){
+                    valor=300;
                 }
                 else{
-                    valor=-1;
+                    valor=-300;
                 }
                 
-                enemy.body.applyImpulse(10000*valor, 0);
                 enemy.stun = true;
-                enemy.stuntime = 0.5;
+                enemy.stuntime = 0.8;
+                
+                enemy.body.velocity[0] = valor;
             }
             hit = false;
         }
