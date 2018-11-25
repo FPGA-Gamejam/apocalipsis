@@ -202,7 +202,7 @@ class cha{
                 }
             }
         }
-        this.cha_anim.update(dt, contact, hit)
+        this.cha_anim.update(dt, contact, hit, this.stun);
 
         if (hit) {
             for (var i = 0; i != this.en_sensor.length; i++) {
