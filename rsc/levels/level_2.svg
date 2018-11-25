@@ -26,10 +26,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.45254834"
-     inkscape:cx="2854.109"
-     inkscape:cy="464.51842"
+     inkscape:cx="4115.1431"
+     inkscape:cy="363.97245"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer8"
      showgrid="true"
      units="px"
      inkscape:pagecheckerboard="false"
@@ -34577,6 +34577,32 @@
        id="path6809"
        inkscape:connector-curvature="0"
        inkscape:label="rail" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="instructions">
+    <circle
+       style="fill:#ffeeaa;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path6816"
+       cx="-4100"
+       cy="400"
+       r="100"
+       inkscape:label="arrows_lr" />
+    <circle
+       style="fill:#ffeeaa;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path6820"
+       cx="-2600"
+       cy="400"
+       r="100"
+       inkscape:label="arrows_up" />
+    <circle
+       style="fill:#ffeeaa;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path6822"
+       cx="-900"
+       cy="400"
+       r="100"
+       inkscape:label="arrows_a" />
   </g>
   <g
      inkscape:groupmode="layer"
