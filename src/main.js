@@ -7,8 +7,13 @@ function preload() {
 	vcr = loadFont("rsc/fonts/VCR.ttf")
 	panda_stan = loadImage("resources/sprites/Panda_stan.png");
 	panda_mov = loadImage("resources/sprites/Panda-mov.png");
+	panda_jump = loadImage("resources/sprites/Panda-jump.png");
+	panda_fall = loadImage("resources/sprites/Panda_fall.png");
+	panda_punch = loadImage("resources/sprites/Panda-punch.png");
+	panda_damage = loadImage("resources/sprites/Panda_damage.png");
 
 	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
+	troyanroll_idle = loadImage("resources/sprites/TroyanPike-prev1.png")
 	tile = loadImage("resources/sprites/tile_100_b.png");
 }
 

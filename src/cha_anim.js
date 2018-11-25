@@ -3,14 +3,23 @@ class cha_anim {
 		this.cha = cha;
 		this.anims = {
 			idle: [
-				{image: panda_stan, time: 0.5, offset: [0, 47]},
+				{image: panda_stan, time: 0.5, offset: [0, 73]},
 			],
 			run: [
-				{image: panda_stan, time: 0.1, offset: [0, 47]},
-				{image: panda_mov, time: 0.1, offset: [0, 47]},
+				{image: panda_stan, time: 0.1, offset: [0, 73]},
+				{image: panda_mov, time: 0.1, offset: [0, 73]},
+			],
+			fall: [
+				{image: panda_fall, time: 0.1, offset: [0, 73]},
 			],
 			air: [
-				{image: panda_mov, time: 0.1, offset: [0, 47]},
+				{image: panda_jump, time: 0.1, offset: [0, 73]},
+			],
+			punch: [
+				{image: panda_punch, time: 0.1, offset: [0, 73]},
+			],
+			damage: [
+				{image: panda_damage, time: 0.1, offset: [0, 73]},
 			]
 		}
 		this.face = 1;
@@ -18,24 +27,45 @@ class cha_anim {
 		this.lastAnim = this.currentAnim;
 		this.timer = 0;
 		this.frame = 0;
+		this.hitLock = 0;
 	}
-	update(dt, contact) {
+	update(dt, contact, hit, stun) {
 		var vel = this.cha.personbody.velocity;
-		if (vel[0] < -5) {
-			this.face = -1;
-		}
-		else if (vel[0] > 5) {
-			this.face = 1;
-		}
-		if (!contact) {
-			this.currentAnim = this.anims.air;
+		if (stun) {
+			console.log("stun");
+			this.currentAnim = this.anims.damage;
 		}
 		else {
-			if (Math.abs(vel[0]) <= 5) {
-				this.currentAnim = this.anims.idle;
+			if (hit) {
+				this.hitLock = 0.15;
+			}
+			if (this.hitLock > 0) {
+				this.hitLock -= dt;
+				this.currentAnim = this.anims.punch;
 			}
 			else {
-				this.currentAnim = this.anims.run;
+				if (vel[0] < -5) {
+					this.face = -1;
+				}
+				else if (vel[0] > 5) {
+					this.face = 1;
+				}
+				if (!contact) {
+					if (vel[1] < 200) {
+						this.currentAnim = this.anims.air;
+					}
+					else {
+						this.currentAnim = this.anims.fall;
+					}
+				}
+				else {
+					if (Math.abs(vel[0]) <= 5) {
+						this.currentAnim = this.anims.idle;
+					}
+					else {
+						this.currentAnim = this.anims.run;
+					}
+				}
 			}
 		}
 		if (this.lastAnim != this.currentAnim) {

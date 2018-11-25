@@ -1,6 +1,6 @@
 class Troyanpike extends Enemy{
-	constructor(level, x, y) {
-		super(level, x, y);
+	constructor(level, x, y, life) {
+		super(level, x, y, life);
 		this.body.gravityScale = 0;
 		this.sensor.body.gravityScale = 0;
 		this.pivotPositionY = x;
@@ -12,7 +12,7 @@ class Troyanpike extends Enemy{
 		this.deltaMovY = 20;
 		this.deltaMovX = 10;
 		this.deltaChar = 150;
-		this.chaseVelocity = 175;
+		this.chaseVelocity = 120;
 		this.backVelocity  = 75;
 
 
@@ -58,5 +58,9 @@ class Troyanpike extends Enemy{
 			return true;
 		}
 		return false;
+	}
+
+	draw() {
+		image(troyanpike_idle, this.body.position[0] - 50, this.body.position[1] - 50);
 	}
 }

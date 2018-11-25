@@ -14,6 +14,7 @@ var canJump = true;
 var hit = false;
 var pum_d=false;
 var pum_i=false;
+var damage=1; //-1 izquierda, 1 derecha
 
 function keyPressed(){
     if(keyCode == UP_ARROW){
@@ -38,30 +39,34 @@ class cha{
         
         this.en_sensor=[];
         this.level=level;
+        this.stun=false;
+        this.stuntime=0.5;
 
         //char
         this.personbody = new p2.Body({mass: 5, position: [this.x, this.y], fixedRotation: true});
         this.personshape = new p2.Circle({radius: this.r});
+        this.personbox = new p2.Box({width: 50, height: 110})
         this.personbody.addShape(this.personshape);
+        this.personbody.addShape(this.personbox, [0, -55]);
         this.level.world.addBody(this.personbody);
         
         //sensor
         this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
-        this.sensorshape = new p2.Box({width: 60, height: 20});
+        this.sensorshape = new p2.Box({width: 40, height: 10});
         this.sensorshape.sensor=true;
         this.sensorbody.addShape(this.sensorshape);
         this.level.world.addBody(this.sensorbody);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.sensorbody, {
-            localPivotA: [0, 50]
+            localPivotA: [0, 25]
         });
         this.level.world.addConstraint(constraint);
         sensors.push(this.sensorbody);
         
         //puño derecha
         this.hitbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
-        this.hitshape = new p2.Circle({radius: 20});
+        this.hitshape = new p2.Box({width: 60, height: 90});
         this.hitshape.sensor=true;
-        this.hitbody.addShape(this.hitshape);
+        this.hitbody.addShape(this.hitshape, [0, -50]);
         this.level.world.addBody(this.hitbody);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.hitbody, {
             localPivotA: [70, -10]
@@ -71,9 +76,9 @@ class cha{
         
         //puño izquierda
         this.hitbody_i = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
-        this.hitshape_i = new p2.Circle({radius: 20});
+        this.hitshape_i = new p2.Box({width: 60, height: 90});
         this.hitshape_i.sensor=true;
-        this.hitbody_i.addShape(this.hitshape_i);
+        this.hitbody_i.addShape(this.hitshape_i, [0, -50]);
         this.level.world.addBody(this.hitbody_i);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.hitbody_i, {
             localPivotA: [-70, -10]
@@ -105,10 +110,29 @@ class cha{
                 contact=true;
                 double=false;
             }
+            if(event.bodyA==this.hitbody || event.bodyB==this.hitbody){
+                damage=-100;
+            }
+            if(event.bodyA==this.hitbody_i || event.bodyB==this.hitbody_i){
+                damage=100;
+            }
             if(event.bodyA==this.personbody || event.bodyB==this.personbody){
                 for(var i=0; i!=this.level.enemyarray.length;i++){
-                    if(event.bodyA==this.level.enemyarray[i] || event.bodyB==this.level.enemyarray[i]){
-                        
+                    if(event.bodyA==this.level.enemyarray[i].body || event.bodyB==this.level.enemyarray[i].body){
+                        if(this.level.enemyarray[i].stun==false){
+                            this.level.enemyarray[i].stun=true;
+                            this.level.enemyarray[i].stuntime = 0.5;
+                            
+                            this.level.enemyarray[i].body.velocity[0]=damage*-1;
+                            
+                            this.health-=1;
+                            console.log(this.health);
+                            //this.personbody.applyImpulse([damage,-1000]);
+                            this.personbody.velocity[0]=damage;
+                            this.personbody.velocity[1]=-200;
+                            this.stun=true;
+                            this.stuntime=0.3;
+                        }
                     }
                 }
             }
@@ -119,20 +143,26 @@ class cha{
     update(dt){
         var vel = this.personbody.velocity;
         var pos = this.personbody.position;
+        
+        this.stuntime -= dt;
+        if (this.stuntime <= 0) {
+            this.stun = false;
+        }
+        
         if(keyIsDown(RIGHT_ARROW)){
-            this.personbody.velocity = p2.vec2.fromValues(200, vel[1]);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(200, vel[1]);
             posX=true;
         }
         else if(keyIsDown(LEFT_ARROW)){
-            this.personbody.velocity = p2.vec2.fromValues(-200, vel[1]);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(-200, vel[1]);
             posX=false;
         }
         else{
-            this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
         }
         vel = this.personbody.velocity;
         if (vel[1] > 500) {
-            this.personbody.velocity = p2.vec2.fromValues(vel[0], 500);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], 500);
         }
         //salto
         vel = this.personbody.velocity;
@@ -140,7 +170,7 @@ class cha{
             jumpTimeSecond = jumpTimeSecond - dt;
             if (jumpTimeSecond > 0) {
                 canJumpSecond = true;
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -400);
+                if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], -400);
             }
             else {
                 canJumpSecond = false;
@@ -150,7 +180,7 @@ class cha{
             jumpTimeFirst = jumpTimeFirst - dt;
             if (jumpTimeFirst > 0) {
                 canJumpFirst = true;
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -500);
+                if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], -500);
             }
             else {
                 canJumpFirst = false;
@@ -164,7 +194,7 @@ class cha{
                     canJumpSecond = true;
                 }
                 if (vel[1] < 0 && !posY) {
-                    this.personbody.velocity = p2.vec2.fromValues(vel[0], vel[1] * 0.75);
+                    if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], vel[1] * 0.75);
                 }
             }
             else {
@@ -174,7 +204,7 @@ class cha{
                 }
             }
         }
-        this.cha_anim.update(dt, contact)
+        this.cha_anim.update(dt, contact, hit, this.stun);
 
         if (hit) {
             for (var i = 0; i != this.en_sensor.length; i++) {
@@ -198,10 +228,6 @@ class cha{
         }
     }
     draw(){
-        drawBody(this.personbody);
-        drawBody(this.hitbody);
-        drawBody(this.hitbody_i);
-        //image(panda_idle, this.personbody.position[0] - 55, this.personbody.position[1] - 140);
         this.cha_anim.draw();
     }
 } 
