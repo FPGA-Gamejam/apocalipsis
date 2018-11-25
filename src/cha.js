@@ -117,6 +117,8 @@ class cha{
                 pum_i=true;
             }
         });
+
+        this.cha_anim = new cha_anim(this);
     }
     update(dt){
         var vel = this.personbody.velocity;
@@ -203,10 +205,13 @@ class cha{
             console.log("golpe izquierda");
             hit=false;
         }
+        this.cha_anim.update(dt)
     }
     draw(){
+        drawBody(this.personbody);
         drawBody(this.hitbody);
         drawBody(this.hitbody_i);
-        image(panda_idle, this.personbody.position[0] - 55, this.personbody.position[1] - 140);
+        //image(panda_idle, this.personbody.position[0] - 55, this.personbody.position[1] - 140);
+        this.cha_anim.draw();
     }
 } 
