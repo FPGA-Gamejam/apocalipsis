@@ -42,10 +42,8 @@
 		else if (keyIsDown(76)) {
 			this.cameraXoffset += 50;
 		}
-		var cameray = this.cha.personbody.position[1];
-		if (cameray > 450) {cameray = 450};
-		this.parallax.target(this.cha.personbody.position[0] + this.cameraXoffset, cameray + this.cameraYoffset, 0);
-		this.parallax.target(this.cha.personbody.position[0] + this.cameraXoffset, cameray + this.cameraYoffset, 1);
+		var pos = rails(this.cha.personbody.position[0], this.cha.personbody.position[1])
+		this.parallax.target(pos[0], pos[1], 0);
 		this.parallax.update(dt);
         this.enemyarray.forEach(function(enemy) {
         		enemy.update(dt);
