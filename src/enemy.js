@@ -1,12 +1,4 @@
-var hit=false;
 var active=false;
-var timer=0.01;
-
-function keyPressed(){
-    if(key == 'a' && active==true){
-        hit=true;
-    }
-}
 
 class Enemy {
 	constructor(level, x, y) {
@@ -35,11 +27,9 @@ class Enemy {
             var sensors = [
                 this.level.cha.hitbody, this.level.cha.hitbody_i
             ];
-            if((event.bodyA==sensors[0] || event.bodyB==sensors[0])){
-                if((event.bodyA==sensors[1] || event.bodyB==sensors[1])){
-                    if((event.bodyA==this.body || event.bodyB==this.body)){
-                        active=true;
-                    }
+            if(event.bodyA==sensors[0] || event.bodyB==sensors[0] || event.bodyA==sensors[1] || event.bodyB==sensors[1]){
+                if((event.bodyA==this.body || event.bodyB==this.body)){
+                    active=true;
                 }
             } 
         }, this);
@@ -48,27 +38,20 @@ class Enemy {
             var sensors = [
                 this.level.cha.hitbody, this.level.cha.hitbody_i
             ];
-            if((event.bodyA==sensors[0] || event.bodyB==sensors[0])){
-                if((event.bodyA==sensors[1] || event.bodyB==sensors[1])){
-                    if((event.bodyA==this.body || event.bodyB==this.body))
-                        active=false;
+            if(event.bodyA==sensors[0] || event.bodyB==sensors[0] || event.bodyA==sensors[1] || event.bodyB==sensors[1]){
+                if((event.bodyA==this.body || event.bodyB==this.body))
+                    active=false;
                 }
-            } 
         }, this);
 	}
 	update(dt) {
-        console.log(active, hit);
+        //console.log(active, hit);
         if(active==true){
-            if(keyIsPressed()==true){
-                if(key=='a'){
-                }
+            console.log(hit);
+            if(hit==true){
+                this.health-=-1;
+                console.log(this.health);
             }
-            this.health-=-1;
-            console.log(this.health);
-            hit=false;
-        }
-        if(active==false){
-            hit=false;
         }
 	}
 	draw() {

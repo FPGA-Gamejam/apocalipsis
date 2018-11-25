@@ -32,7 +32,7 @@ function keyReleased(){
 }
 
 class cha{
-    constructor (x, y, r, world, enemies){
+    constructor (x, y, r, world){
         this.x=x;
         this.y=y;
         this.r=r;
@@ -80,7 +80,7 @@ class cha{
         sensors.push(this.hitbody_i);
         
         this.world=world;
-        this.enemies=enemies;
+        this.level=level;
 
         this.world.on("endContact",function(event){
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0] ){
