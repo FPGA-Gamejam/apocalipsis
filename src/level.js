@@ -3,6 +3,8 @@
 		this.world = new p2.World({gravity: [0, 700]});
 		this.terrain = new Terrain(this, svg);
 		this.parallax = new Parallax();
+        this.cameraXoffset = 0;
+        this.cameraYoffset = 0;
 
 		//**ENEMIES**
 		this.enemyarray = [];
@@ -19,10 +21,22 @@
 	update(dt) {
 		this.world.step(dt);
 		this.cha.update(dt);
+        if (keyIsDown(73)) {
+			this.cameraYoffset -= 50;
+		}
+		else if (keyIsDown(75)) {
+			this.cameraYoffset += 50;
+		}
+		if (keyIsDown(74)) {
+			this.cameraXoffset -= 50;
+		}
+		else if (keyIsDown(76)) {
+			this.cameraXoffset += 50;
+		}
 		var cameray = this.cha.personbody.position[1];
 		if (cameray > 450) {cameray = 450};
-		this.parallax.target(this.cha.personbody.position[0], cameray, 0);
-		this.parallax.target(this.cha.personbody.position[0], cameray, 1);
+		this.parallax.target(this.cha.personbody.position[0] + this.cameraXoffset, cameray + this.cameraYoffset, 0);
+		this.parallax.target(this.cha.personbody.position[0] + this.cameraXoffset, cameray + this.cameraYoffset, 1);
 		this.parallax.update(dt);
         this.enemyarray.forEach(function(enemy) {
 			enemy.update(dt);
