@@ -27,6 +27,7 @@
 		}, this);
 
 		this.cha = new cha(this, -4000, 200, 25);
+        this.reset=false;
 	}
 	update(dt) {
 		this.world.step(dt);
@@ -62,29 +63,24 @@
                 this.world.removeBody(this.enemyarray[i].body);
                 delete this.enemyarray[i];
                 this.enemyarray.splice(i,1);
-            }
-            
-            this.enemyarray = [];
-            var enemies = this.svg.layer("npc");
-            enemies.forEach(function(obj) {
-                if (obj.type == "circle") {
-                    if (obj.label == "enemy_ground") {
-                        var enemy = new Troyanroll(this, obj.x, obj.y, this.life_roll);
-                    }
-                    else if (obj.label == "enemy_fly") {
-                        var enemy = new Troyanpike(this, obj.x, obj.y, this.life_roll);
-                    }
-                    else if (obj.label == "enemy_boss") {
-                        var enemy = new Troyanboss(this, obj.x, obj.y, this.life_roll);
-                    }
-                    this.enemyarray.push(enemy);
-                }
-            }, this);
-            
-            /*this.world._removeBody(this.cha.body);
-            delete this.cha;
-            this.cha = new cha(this, 300, 400, 25);*/
+            }  
         }
+        /*this.enemyarray = [];
+		var enemies = this.svg.layer("npc");
+		enemies.forEach(function(obj) {
+			if (obj.type == "circle") {
+				if (obj.label == "enemy_ground") {
+					var enemy = new Troyanroll(this, obj.x, obj.y, this.life_roll);
+				}
+				else if (obj.label == "enemy_fly") {
+					var enemy = new Troyanpike(this, obj.x, obj.y, this.life_roll);
+				}
+				else if (obj.label == "enemy_boss") {
+					var enemy = new Troyanboss(this, obj.x, obj.y, this.life_roll);
+				}
+	        	this.enemyarray.push(enemy);
+			}
+		});*/
 	}
 	draw() {
 		//fondo
