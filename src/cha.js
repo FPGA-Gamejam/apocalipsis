@@ -8,8 +8,11 @@ var pum_i=false;
 var posX=true; //true derecha, false izquierda
 var count=0;
 var relY = true;
-var jumpTime = 0.15;
-var jumping = false;
+var jumpTimeFirst = 0.05;
+var jumpTimeSecond = 0.05;
+var canJumpFirst = false;
+var canJumpSecond = false;
+var canJump = true;
 
 function keyPressed(){
     if(keyCode == UP_ARROW){
@@ -101,7 +104,8 @@ class cha{
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0]){
                 count += 1;
                 if (count > 1) {
-                    jumpTime = 0.15;
+                    jumpTimeFirst = 0.05;
+                    jumpTimeSecond = 0.05;
                 }
                 contact=true;
                 double=false;
@@ -128,17 +132,48 @@ class cha{
         else{
             this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
         }
+        vel = this.personbody.velocity;
+        if (vel[1] > 500) {
+            this.personbody.velocity = p2.vec2.fromValues(vel[0], 500);
+        }
         //salto
         vel = this.personbody.velocity;
-        if (posY) {
-            jumpTime = jumpTime - dt;
-            if (jumpTime > 0) {
+        if (posY && canJumpSecond) {
+            jumpTimeSecond = jumpTimeSecond - dt;
+            if (jumpTimeSecond > 0) {
+                canJumpSecond = true;
+                this.personbody.velocity = p2.vec2.fromValues(vel[0], -400);
+            }
+            else {
+                canJumpSecond = false;
+            }
+        }
+        if (posY && canJumpFirst) {
+            jumpTimeFirst = jumpTimeFirst - dt;
+            if (jumpTimeFirst > 0) {
+                canJumpFirst = true;
                 this.personbody.velocity = p2.vec2.fromValues(vel[0], -500);
+            }
+            else {
+                canJumpFirst = false;
             }
         }
         else {
             if (!contact) {
-                jumpTime = 0;
+                jumpTimeFirst = 0;
+                canJumpFirst = false;
+                if (!posY && jumpTimeSecond > 0) {
+                    canJumpSecond = true;
+                }
+                if (vel[1] < 0 && !posY) {
+                    this.personbody.velocity = p2.vec2.fromValues(vel[0], vel[1] * 0.75);
+                }
+            }
+            else {
+                if (!posY) {
+                    canJumpFirst = true;
+                    canJumpSecond = false;
+                }
             }
         }
         //if(posY==true && double==false){
