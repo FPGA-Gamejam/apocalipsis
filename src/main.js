@@ -18,7 +18,7 @@ function setup() {
 
 	level = new Level(level3_svg);
 	hud = new HUD(level);
-	fill(0, 80, 0);
+	//fill(0, 80, 0);
 }
 
 function draw() {

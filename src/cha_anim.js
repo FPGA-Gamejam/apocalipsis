@@ -15,6 +15,7 @@ class cha_anim {
 		}
 		this.face = 1;
 		this.currentAnim = this.anims.run;
+		this.lastAnim = this.currentAnim;
 		this.timer = 0;
 		this.frame = 0;
 	}
@@ -26,8 +27,20 @@ class cha_anim {
 		else if (vel[0] > 5) {
 			this.face = 1;
 		}
-		if (Math.abs(vel[0]) <= 10) {
-			this.currentAnim = this.anims.idle;
+		if (!contact) {
+			this.currentAnim = this.anims.air;
+		}
+		else {
+			if (Math.abs(vel[0]) <= 5) {
+				this.currentAnim = this.anims.idle;
+			}
+			else {
+				this.currentAnim = this.anims.run;
+			}
+		}
+		if (this.lastAnim != this.currentAnim) {
+			this.frame = 0;
+			this.timer = 0;
 		}
 		this.timer += dt;
 		if (this.timer >= this.currentAnim[this.frame].time) {
@@ -37,7 +50,6 @@ class cha_anim {
 			}
 			this.timer = 0;
 		}
-
 	}
 	draw() {
 		var pos = this.cha.personbody.position;

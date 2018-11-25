@@ -5,16 +5,15 @@ class HUD {
 			heigth: height,
 		};
 		this.stats = {
-			//stats rectangle
-			x: this.screenDimentions.width - 201,
-			y: 0,
-			width: 200,
-			heigth: 75,
-			//stats
 			cpu: 0,
 			ram: 0,
 			temperature: 0,
 		}
+		this.stats.width = 500;
+		this.stats.heigth = 300;
+		this.stats.x = this.screenDimentions.width - this.stats.width;
+		this.stats.y = 0;
+
 		textFont(vcr);
 	}
  	update(dt) {
