@@ -8,7 +8,13 @@ class Troyanroll extends Enemy{
 		this.jumpSpeed = 1000;
 	}
 	update(dt) {
-		this.body.velocity[0] = 0;
+        if (this.stun) {
+            this.stuntime -= dt;
+            if (this.stuntime <= 0) {
+                this.stun = false;
+            }
+        };
+        
 		if(this.charLocked()&&this.body.velocity[1]<Math.abs(1))
 		{
 			this.body.velocity[1] = -this.jumpSpeed ;
