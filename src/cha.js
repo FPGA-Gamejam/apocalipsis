@@ -14,6 +14,7 @@ var canJump = true;
 var hit = false;
 var pum_d=false;
 var pum_i=false;
+var damage=1; //-1 izquierda, 1 derecha
 
 function keyPressed(){
     if(keyCode == UP_ARROW){
@@ -38,6 +39,8 @@ class cha{
         
         this.en_sensor=[];
         this.level=level;
+        this.stun=false;
+        this.stuntime=0.5;
 
         //char
         this.personbody = new p2.Body({mass: 5, position: [this.x, this.y], fixedRotation: true});
@@ -105,10 +108,29 @@ class cha{
                 contact=true;
                 double=false;
             }
+            if(event.bodyA==this.hitbody || event.bodyB==this.hitbody){
+                damage=-100;
+            }
+            if(event.bodyA==this.hitbody_i || event.bodyB==this.hitbody_i){
+                damage=100;
+            }
             if(event.bodyA==this.personbody || event.bodyB==this.personbody){
                 for(var i=0; i!=this.level.enemyarray.length;i++){
-                    if(event.bodyA==this.level.enemyarray[i] || event.bodyB==this.level.enemyarray[i]){
-                        
+                    if(event.bodyA==this.level.enemyarray[i].body || event.bodyB==this.level.enemyarray[i].body){
+                        if(this.level.enemyarray[i].stun==false){
+                            this.level.enemyarray[i].stun=true;
+                            this.level.enemyarray[i].stuntime = 0.5;
+                            
+                            this.level.enemyarray[i].body.velocity[0]=damage*-1;
+                            
+                            this.health-=1;
+                            console.log(this.health);
+                            //this.personbody.applyImpulse([damage,-1000]);
+                            this.personbody.velocity[0]=damage;
+                            this.personbody.velocity[1]=-200;
+                            this.stun=true;
+                            this.stuntime=0.3;
+                        }
                     }
                 }
             }
@@ -119,20 +141,26 @@ class cha{
     update(dt){
         var vel = this.personbody.velocity;
         var pos = this.personbody.position;
+        
+        this.stuntime -= dt;
+        if (this.stuntime <= 0) {
+            this.stun = false;
+        }
+        
         if(keyIsDown(RIGHT_ARROW)){
-            this.personbody.velocity = p2.vec2.fromValues(200, vel[1]);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(200, vel[1]);
             posX=true;
         }
         else if(keyIsDown(LEFT_ARROW)){
-            this.personbody.velocity = p2.vec2.fromValues(-200, vel[1]);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(-200, vel[1]);
             posX=false;
         }
         else{
-            this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(0, vel[1]);
         }
         vel = this.personbody.velocity;
         if (vel[1] > 500) {
-            this.personbody.velocity = p2.vec2.fromValues(vel[0], 500);
+            if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], 500);
         }
         //salto
         vel = this.personbody.velocity;
@@ -140,7 +168,7 @@ class cha{
             jumpTimeSecond = jumpTimeSecond - dt;
             if (jumpTimeSecond > 0) {
                 canJumpSecond = true;
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -400);
+                if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], -400);
             }
             else {
                 canJumpSecond = false;
@@ -150,7 +178,7 @@ class cha{
             jumpTimeFirst = jumpTimeFirst - dt;
             if (jumpTimeFirst > 0) {
                 canJumpFirst = true;
-                this.personbody.velocity = p2.vec2.fromValues(vel[0], -500);
+                if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], -500);
             }
             else {
                 canJumpFirst = false;
@@ -164,7 +192,7 @@ class cha{
                     canJumpSecond = true;
                 }
                 if (vel[1] < 0 && !posY) {
-                    this.personbody.velocity = p2.vec2.fromValues(vel[0], vel[1] * 0.75);
+                    if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], vel[1] * 0.75);
                 }
             }
             else {
@@ -174,7 +202,7 @@ class cha{
                 }
             }
         }
-        this.cha_anim.update(dt, contact)
+        this.cha_anim.update(dt, contact, hit)
 
         if (hit) {
             for (var i = 0; i != this.en_sensor.length; i++) {
