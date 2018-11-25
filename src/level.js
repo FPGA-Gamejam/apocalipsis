@@ -5,13 +5,14 @@
 		this.parallax = new Parallax();
         this.cameraXoffset = 0;
         this.cameraYoffset = 0;
+        this.life_roll=3;
 
 		//**ENEMIES**
 		this.enemyarray = [];
 		var enemies = svg.layer("npc");
 		enemies.forEach(function(obj) {
 			if (obj.type == "circle") {
-				var enemy = new Troyanroll(this, obj.x, obj.y);
+				var enemy = new Troyanroll(this, obj.x, obj.y, this.life_roll);
 	        	this.enemyarray.push(enemy);
 			}
 		}, this);

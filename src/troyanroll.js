@@ -1,6 +1,6 @@
 class Troyanroll extends Enemy{
-	constructor(level, x, y) {
-		super(level, x, y);
+	constructor(level, x, y, life) {
+		super(level, x, y, life);
 		this.lockedChar = false;
 		this.pastNear = false;
 		this.nearNow  = false;
