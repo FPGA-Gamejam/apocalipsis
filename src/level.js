@@ -1,12 +1,12 @@
  class Level {
 	constructor(svg) {
-		this.world = new p2.World({gravity: [0, 1000]});
+		this.world = new p2.World({gravity: [0, 700]});
 		this.terrain = new Terrain(this, svg);
 		this.parallax = new Parallax();
 
 		//**ENEMIES**
 		this.enemyarray = [];
-		var enemies = svg.layer("Enemies");
+		var enemies = svg.layer("npc");
 		enemies.forEach(function(obj) {
 			if (obj.type == "circle") {
 				var enemy = new Enemy(this, obj.x, obj.y);
