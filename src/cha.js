@@ -13,23 +13,20 @@ var jumpTimeSecond = 0.05;
 var canJumpFirst = false;
 var canJumpSecond = false;
 var canJump = true;
-var timer = 2/60;
+var hit = false;
 
 function keyPressed(){
     if(keyCode == UP_ARROW){
         posY=true;
-        relY=false;
     }
-    if(key == 'a'){
-        hit=true;
-        timer=2/60;
+    if (key == "a") {
+        hit = true;
     }
 }
 
 function keyReleased(){
     if (keyCode == UP_ARROW){
         posY=false;
-        relY = true;
     }
 }
 
@@ -39,6 +36,8 @@ class cha{
         this.y=y;
         this.r=r;
         
+        this.en_sensor=[];
+
         //char
         this.personbody = new p2.Body({mass: 5, position: [this.x, this.y], fixedRotation: true});
         this.personshape = new p2.Circle({radius: this.r});
@@ -95,12 +94,6 @@ class cha{
                 }
 
             }
-            if(event.bodyA==sensors[1] || event.bodyB==sensors[1]){
-                pum_d=false;
-            }
-            if(event.bodyA==sensors[2] || event.bodyB==sensors[2]){
-                pum_i=false;
-            }
         });
         this.world.on("beginContact",function(event){
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0]){
@@ -112,17 +105,12 @@ class cha{
                 contact=true;
                 double=false;
             }
-            if(event.bodyA==sensors[1] || event.bodyB==sensors[1]){
-                pum_d=true;
-            }
-            if(event.bodyA==sensors[2] || event.bodyB==sensors[2]){
-                pum_i=true;
-            }
         });
 
         this.cha_anim = new cha_anim(this);
     }
     update(dt){
+        console.log(this.en_sensor.length);
         var vel = this.personbody.velocity;
         var pos = this.personbody.position;
         if(keyIsDown(RIGHT_ARROW)){
@@ -180,24 +168,6 @@ class cha{
                 }
             }
         }
-        //if(posY==true && double==false){
-        //    posY=false;
-        //    if(contact==false){
-        //        double=true;
-        //        //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
-        //        this.personbody.applyImpulse([0, -vel[1]]);
-        //        this.personbody.applyImpulse([0, -1500]);
-        //    }
-        //    else{
-        //        //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000); //-1000
-        //         this.personbody.applyImpulse([0, -vel[1]]);
-        //         this.personbody.applyImpulse([0, -1500]);
-        //    }
-        //}
-        //else{
-        //    posY=false;
-        //}
-
         //golpe
         if(hit==true && pum_d==true && posX==true){
             console.log("golpe derecha", timer);
@@ -214,6 +184,15 @@ class cha{
             }
         }
         this.cha_anim.update(dt, contact)
+
+        if (hit) {
+            for (var i = 0; i != this.en_sensor.length; i++) {
+                var enemy = this.en_sensor[i];
+                enemy.health -= 1;
+                console.log(enemy.health);
+            }
+            hit = false;
+        }
     }
     draw(){
         drawBody(this.personbody);
