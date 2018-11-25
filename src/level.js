@@ -14,7 +14,7 @@
 			}
 		}, this);
 
-		this.cha = new cha(300, 500, 50, this.world, this.enemyarray);
+		this.cha = new cha(300, 500, 50, this.world);
 	}
 	update(dt) {
 		this.world.step(dt);
