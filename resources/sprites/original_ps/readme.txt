@@ -1,1 +1,0 @@
-Originales Photoshop
