@@ -7,13 +7,24 @@ var pum_d=false;
 var pum_i=false;
 var posX=true; //true derecha, false izquierda
 var count=0;
+var relY = true;
+var jumpTime = 0.15;
+var jumping = false;
 
 function keyPressed(){
     if(keyCode == UP_ARROW){
         posY=true;
+        relY=false;
     }
     if(key == 'a'){
         hit=true;
+    }
+}
+
+function keyReleased(){
+    if (keyCode == UP_ARROW){
+        posY=false;
+        relY = true;
     }
 }
 
@@ -30,7 +41,7 @@ class cha{
         world.addBody(this.personbody);
         
         //sensor
-        this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true});
+        this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
         this.sensorshape = new p2.Box({width: 60, height: 20});
         this.sensorshape.sensor=true;
         this.sensorbody.addShape(this.sensorshape);
@@ -42,7 +53,7 @@ class cha{
         sensors.push(this.sensorbody);
         
         //puño derecha
-        this.hitbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true});
+        this.hitbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
         this.hitshape = new p2.Circle({radius: 20});
         this.hitshape.sensor=true;
         this.hitbody.addShape(this.hitshape);
@@ -54,7 +65,7 @@ class cha{
         sensors.push(this.hitbody);
         
         //puño izquierda
-        this.hitbody_i = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true});
+        this.hitbody_i = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
         this.hitshape_i = new p2.Circle({radius: 20});
         this.hitshape_i.sensor=true;
         this.hitbody_i.addShape(this.hitshape_i);
@@ -89,6 +100,9 @@ class cha{
         this.world.on("beginContact",function(event){
             if(event.bodyA==sensors[0] || event.bodyB==sensors[0]){
                 count += 1;
+                if (count > 1) {
+                    jumpTime = 0.15;
+                }
                 contact=true;
                 double=false;
             }
@@ -100,7 +114,7 @@ class cha{
             }
         });
     }
-    update(){
+    update(dt){
         var vel = this.personbody.velocity;
         var pos = this.personbody.position;
         if(keyIsDown(RIGHT_ARROW)){
@@ -116,23 +130,35 @@ class cha{
         }
         //salto
         vel = this.personbody.velocity;
-        if(posY==true && double==false){
-            posY=false;
-            if(contact==false){
-                double=true;
-                //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
-                this.personbody.applyImpulse([0, -vel[1]]);
-                this.personbody.applyImpulse([0, -1500]);
-            }
-            else{
-                //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000); //-1000
-                 this.personbody.applyImpulse([0, -vel[1]]);
-                 this.personbody.applyImpulse([0, -1500]);
+        if (posY) {
+            jumpTime = jumpTime - dt;
+            if (jumpTime > 0) {
+                this.personbody.velocity = p2.vec2.fromValues(vel[0], -500);
             }
         }
-        else{
-            posY=false;
+        else {
+            if (!contact) {
+                jumpTime = 0;
+            }
         }
+        //if(posY==true && double==false){
+        //    posY=false;
+        //    if(contact==false){
+        //        double=true;
+        //        //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000);
+        //        this.personbody.applyImpulse([0, -vel[1]]);
+        //        this.personbody.applyImpulse([0, -1500]);
+        //    }
+        //    else{
+        //        //this.personbody.velocity = p2.vec2.fromValues(vel[0], -1000); //-1000
+        //         this.personbody.applyImpulse([0, -vel[1]]);
+        //         this.personbody.applyImpulse([0, -1500]);
+        //    }
+        //}
+        //else{
+        //    posY=false;
+        //}
+
         //golpe
         if(hit==true && pum_d==true && posX==true){
             console.log("golpe derecha");
