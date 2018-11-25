@@ -24,6 +24,9 @@
 		this.parallax.target(this.cha.personbody.position[0], cameray, 0);
 		this.parallax.target(this.cha.personbody.position[0], cameray, 1);
 		this.parallax.update(dt);
+        this.enemyarray.forEach(function(enemy) {
+			enemy.update(dt);
+		});
 	}
 	draw() {
 		//fondo
