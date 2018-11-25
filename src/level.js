@@ -14,7 +14,7 @@
 			}
 		}, this);
 
-		this.cha = new cha(300, 500, 50, this.world);
+		this.cha = new cha(this, 300, 500, 50);
 	}
 	update(dt) {
 		this.world.step(dt);

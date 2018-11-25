@@ -25,7 +25,7 @@ class Troyanpike extends Enemy{
                 this.stun = false;
             }
         };
-		if( this.charNear() ){
+		if( this.charNear() && this.stun==false){
 			if( this.level.cha.personbody.position[0] < this.body.position[0] )
 				this.body.velocity[0]= -this.chaseVelocity ;
 			else
@@ -36,14 +36,16 @@ class Troyanpike extends Enemy{
 				this.body.velocity[1] = this.chaseVelocity ;
 		}
 		else{
-			if( this.body.position[1] > this.pivotPositionX + this.deltaMovY )
-				this.body.velocity[1] = -this.backVelocity;
-			if( this.body.position[1] < this.pivotPositionX - this.deltaMovY )
-				this.body.velocity[1] = this.backVelocity;
-			if( this.body.position[0] > this.pivotPositionY + this.deltaMovY )
-				this.body.velocity[0] = -this.backVelocity;
-			if( this.body.position[0] < this.pivotPositionY - this.deltaMovY )
-				this.body.velocity[0] = this.backVelocity;
+            if(this.stun==false){
+                if( this.body.position[1] > this.pivotPositionX + this.deltaMovY )
+                    this.body.velocity[1] = -this.backVelocity;
+                if( this.body.position[1] < this.pivotPositionX - this.deltaMovY )
+                    this.body.velocity[1] = this.backVelocity;
+                if( this.body.position[0] > this.pivotPositionY + this.deltaMovY )
+                    this.body.velocity[0] = -this.backVelocity;
+                if( this.body.position[0] < this.pivotPositionY - this.deltaMovY )
+                    this.body.velocity[0] = this.backVelocity;
+            }
 		}
 
 
