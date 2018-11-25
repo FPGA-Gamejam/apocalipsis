@@ -95,6 +95,8 @@ class svgParser {
 		var obj = {
 			type: "rect",
 			vertices: [[x, y], [x + width, y], [x + width, y + height], [x, y + height]],
+			width: width,
+			height: height,
 			label: node.getString("inkscape:label"),
 		};
 		this.transform(node, obj);
