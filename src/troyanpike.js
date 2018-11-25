@@ -1,6 +1,6 @@
 class Troyanpike extends Enemy{
-	constructor(level, x, y) {
-		super(level, x, y);
+	constructor(level, x, y, life) {
+		super(level, x, y, life);
 		this.body.gravityScale = 0;
 		this.sensor.body.gravityScale = 0;
 		this.pivotPositionY = x;
