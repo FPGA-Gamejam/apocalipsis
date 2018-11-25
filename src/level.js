@@ -9,7 +9,7 @@
 		var enemies = svg.layer("npc");
 		enemies.forEach(function(obj) {
 			if (obj.type == "circle") {
-				var enemy = new Enemy(this, obj.x, obj.y);
+				var enemy = new Troyanpike(this, obj.x, obj.y);
 	        	this.enemyarray.push(enemy);
 			}
 		}, this);
