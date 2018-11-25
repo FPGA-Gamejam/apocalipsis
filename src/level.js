@@ -6,6 +6,7 @@
         this.cameraXoffset = 0;
         this.cameraYoffset = 0;
         this.life_roll=3;
+        this.svg=svg;
 
 		//**ENEMIES**
 		this.enemyarray = [];
@@ -59,14 +60,14 @@
         }
         
         if(this.cha.health==0 || this.cha.personbody.position[1]>2000){
-            /*for (var i=this.enemyarray.length-1;i!=-1;i--){
+            for (var i=this.enemyarray.length-1;i!=-1;i--){
                 this.world.removeBody(this.enemyarray[i].body);
                 delete this.enemyarray[i];
                 this.enemyarray.splice(i,1);
-            }*/
+            }
             
-            /*this.enemyarray = [];
-            var enemies = svg.layer("npc");
+            this.enemyarray = [];
+            var enemies = this.svg.layer("npc");
             enemies.forEach(function(obj) {
                 if (obj.type == "circle") {
                     if (obj.label == "enemy_ground") {
@@ -80,11 +81,11 @@
                     }
                     this.enemyarray.push(enemy);
                 }
-            }, this);*/
+            }, this);
             
-            this.world._removeBody(this.cha.body);
+            /*this.world._removeBody(this.cha.body);
             delete this.cha;
-            this.cha = new cha(this, 300, 400, 25);
+            this.cha = new cha(this, 300, 400, 25);*/
         }
 	}
 	draw() {
