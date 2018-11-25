@@ -65,11 +65,13 @@ class cha{
         }
         vel = this.personbody.velocity;
         if(posY==true && double==false){
-            console.log(vel);
-            this.personbody.velocity = p2.vec2.fromValues(vel[0], -600);
             posY=false;
             if(contact==false){
                 double=true;
+                this.personbody.velocity = p2.vec2.fromValues(vel[0], -600);
+            }
+            else{
+                this.personbody.velocity = p2.vec2.fromValues(vel[0], -900); //-1000
             }
         }
         else{
