@@ -45,7 +45,9 @@ class cha{
         //char
         this.personbody = new p2.Body({mass: 5, position: [this.x, this.y], fixedRotation: true});
         this.personshape = new p2.Circle({radius: this.r});
+        this.personshape2 = new p2.Circle({radius: this.r});
         this.personbody.addShape(this.personshape);
+        this.personbody.addShape(this.personshape2);
         this.level.world.addBody(this.personbody);
         
         //sensor
@@ -55,7 +57,7 @@ class cha{
         this.sensorbody.addShape(this.sensorshape);
         this.level.world.addBody(this.sensorbody);
         var constraint = new p2.RevoluteConstraint(this.personbody, this.sensorbody, {
-            localPivotA: [0, 50]
+            localPivotA: [0, 25]
         });
         this.level.world.addConstraint(constraint);
         sensors.push(this.sensorbody);
