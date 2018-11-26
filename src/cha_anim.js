@@ -71,6 +71,7 @@ class cha_anim {
 		if (this.lastAnim != this.currentAnim) {
 			this.frame = 0;
 			this.timer = 0;
+            this.lastAnim = this.currentAnim;
 		}
 		this.timer += dt;
 		if (this.timer >= this.currentAnim[this.frame].time) {
