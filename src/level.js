@@ -60,13 +60,13 @@
             }
         }
 
-        if(this.cha.health==0 || this.cha.personbody.position[1]>2000){
-            for (var i=this.enemyarray.length-1;i!=-1;i--){
-                this.world.removeBody(this.enemyarray[i].body);
-                delete this.enemyarray[i];
-                this.enemyarray.splice(i,1);
-            }
-        }
+        // if(this.cha.health==0 || this.cha.personbody.position[1]>2000){
+        //     for (var i=this.enemyarray.length-1;i!=-1;i--){
+        //         this.world.removeBody(this.enemyarray[i].body);
+        //         delete this.enemyarray[i];
+        //         this.enemyarray.splice(i,1);
+        //     }
+        // }
         /*this.enemyarray = [];
 		var enemies = this.svg.layer("npc");
 		enemies.forEach(function(obj) {

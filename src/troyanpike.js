@@ -11,7 +11,7 @@ class Troyanpike extends Enemy{
 		this.body.velocity = [10,-100];
 		this.deltaMovY = 20;
 		this.deltaMovX = 10;
-		this.deltaChar = 150;
+		this.deltaChar = 250;
 		this.chaseVelocity = 120;
 		this.backVelocity  = 75;
 		this.idle = 0;
