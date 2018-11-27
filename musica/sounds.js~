@@ -1,0 +1,24 @@
+class music {
+
+    constructor (base)  { 
+	this.base = base;
+    }
+
+    playBase () {
+	base.play();
+    }
+
+}
+var base;
+
+function preload(){
+    base = loadSound('intro.mp3');
+
+}
+
+function setup(){
+    let song = new music(base);
+
+    music.playBase();
+
+}
