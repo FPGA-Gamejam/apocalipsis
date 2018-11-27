@@ -36,7 +36,7 @@ class cha{
         this.x=x;
         this.y=y;
         this.r=r;
-        
+
         this.en_sensor=[];
         this.level=level;
         this.stun=false;
@@ -51,7 +51,7 @@ class cha{
         this.level.world.addBody(this.personbody);
 
         //side sensor
-        
+
         //sensor
         this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
         this.sensorshape = new p2.Box({width: 40, height: 10});
@@ -63,7 +63,7 @@ class cha{
         });
         this.level.world.addConstraint(constraint);
         sensors.push(this.sensorbody);
-        
+
         //puño derecha
         this.hitbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
         this.hitshape = new p2.Box({width: 60, height: 90});
@@ -75,7 +75,7 @@ class cha{
         });
         this.level.world.addConstraint(constraint);
         sensors.push(this.hitbody);
-        
+
         //puño izquierda
         this.hitbody_i = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
         this.hitshape_i = new p2.Box({width: 60, height: 90});
@@ -87,7 +87,7 @@ class cha{
         });
         this.level.world.addConstraint(constraint);
         sensors.push(this.hitbody_i);
-        
+
         this.health=10;
 
         this.level.world.on("endContact",function(event){
@@ -124,9 +124,9 @@ class cha{
                         if(this.level.enemyarray[i].stun==false){
                             this.level.enemyarray[i].stun=true;
                             this.level.enemyarray[i].stuntime = 0.5;
-                            
+
                             this.level.enemyarray[i].body.velocity[0]=damage*-1;
-                            
+
                             this.health-=1;
                             console.log(this.health);
                             //this.personbody.applyImpulse([damage,-1000]);
@@ -145,12 +145,12 @@ class cha{
     update(dt){
         var vel = this.personbody.velocity;
         var pos = this.personbody.position;
-        
+
         this.stuntime -= dt;
         if (this.stuntime <= 0) {
             this.stun = false;
         }
-        
+
         if(keyIsDown(RIGHT_ARROW)){
             if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(200, vel[1]);
             posX=true;
@@ -182,7 +182,7 @@ class cha{
             jumpTimeFirst = jumpTimeFirst - dt;
             if (jumpTimeFirst > 0) {
                 canJumpFirst = true;
-                if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], -500);
+                if(!this.stun) this.personbody.velocity = p2.vec2.fromValues(vel[0], -550);
             }
             else {
                 canJumpFirst = false;
@@ -212,7 +212,7 @@ class cha{
             for (var i = 0; i != this.en_sensor.length; i++) {
                 var enemy = this.en_sensor[i];
                 enemy.health -= 1;
-                
+
                 var valor=1;
                 if(posX==true){
                     valor=300;
@@ -220,10 +220,10 @@ class cha{
                 else{
                     valor=-300;
                 }
-                
+
                 enemy.stun = true;
                 enemy.stuntime = 0.8;
-                
+
                 enemy.body.velocity[0] = valor;
             }
             hit = false;
@@ -233,4 +233,4 @@ class cha{
 
         this.cha_anim.draw();
     }
-} 
+}
