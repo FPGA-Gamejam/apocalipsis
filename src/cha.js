@@ -49,6 +49,8 @@ class cha{
         this.personbody.addShape(this.personshape);
         this.personbody.addShape(this.personbox, [0, -55]);
         this.level.world.addBody(this.personbody);
+
+        //side sensor
         
         //sensor
         this.sensorbody = new p2.Body({mass: 0.001, position: [this.x, this.y], fixedRotation: true, gravityScale: 0});
@@ -228,6 +230,7 @@ class cha{
         }
     }
     draw(){
+
         this.cha_anim.draw();
     }
 } 

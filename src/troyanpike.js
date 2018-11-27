@@ -14,8 +14,8 @@ class Troyanpike extends Enemy{
 		this.deltaChar = 150;
 		this.chaseVelocity = 120;
 		this.backVelocity  = 75;
-
-
+		this.idle = 0;
+		this.tdraw = 0;
 	}
 
 	update(dt) {
@@ -60,7 +60,33 @@ class Troyanpike extends Enemy{
 		return false;
 	}
 
-	draw() {
-		image(troyanpike_idle, this.body.position[0] - 50, this.body.position[1] - 50);
-	}
+		draw() {
+			this.tdraw=1/60+this.tdraw;
+			if(this.charNear()){
+				if(this.tdraw<0.3)
+						image(troyanpike_angry1,this.body.position[0], this.body.position[1]);
+				else if(this.tdraw<0.6)
+						image(troyanpike_angry2,this.body.position[0], this.body.position[1]);
+				else if(this.tdraw<0.9)
+						image(troyanpike_angry3,this.body.position[0], this.body.position[1]);
+				else{
+						image(troyanpike_angry3,this.body.position[0], this.body.position[1]);
+						this.tdraw= 0;
+					}
+			}
+			else {
+				if(this.tdraw<0.3)
+						image(troyanpike_stan1,this.body.position[0], this.body.position[1]);
+				else if(this.tdraw<0.6)
+						image(troyanpike_stan2,this.body.position[0], this.body.position[1]);
+				else{
+						image(troyanpike_stan2,this.body.position[0], this.body.position[1]);
+						this.tdraw= 0;
+					}
+			}
+			//image(troyanpike_stan2,this.body.position[0], this.body.position[1]);
+
+		}
+		//image(troyanpike_idle, this.body.position[0] - 50, this.body.position[1] - 50);
+
 }

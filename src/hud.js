@@ -17,13 +17,13 @@ class HUD {
 		textFont(vcr);
 	}
  	update(dt) {
-
  	}
- 	draw() {
+ 	draw(life) {
  		var dim = this.screenDimentions;
  		var stats = this.stats;
- 		rect(stats.x, stats.y, stats.width, stats.heigth);
- 		text(stats.cpu, stats.x + 10, stats.y + 10);
- 		
+ 		rect(stats.x, stats.y, 300, 100);
+        textSize(50);
+        text("Life: " , stats.x + 10, stats.y + 50);
+ 		text(Math.trunc(life) , stats.x + 150, stats.y + 50);
  	}
 }

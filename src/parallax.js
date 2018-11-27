@@ -25,8 +25,8 @@ class Parallax {
 	}
 	update(dt) {
 		for (var i = 0; i != this.layer.length; i++) {
-			this.layer[i].pos[0] = this.layer[i].pos[0] + ((-this.layer[i].dest[0] - this.layer[i].pos[0]) * dt * 10);
-			this.layer[i].pos[1] = this.layer[i].pos[1] + ((-this.layer[i].dest[1] - this.layer[i].pos[1]) * dt * 10);
+			this.layer[i].pos[0] = this.layer[i].pos[0] + ((-this.layer[i].dest[0] - this.layer[i].pos[0]) * dt * 5);
+			this.layer[i].pos[1] = this.layer[i].pos[1] + ((-this.layer[i].dest[1] - this.layer[i].pos[1]) * dt * 5);
 		}
 	}
 	draw(l) {

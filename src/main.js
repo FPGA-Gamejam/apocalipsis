@@ -1,6 +1,7 @@
 var TIMESTEP = 1 / 60;
 var level3_svg, level3_bg, vcr;
 var level, hud;
+var splashTime = 3;
 function preload() {
 	level3_svg = new svgParser("rsc/levels/level_2.svg");
 	level3_bg = loadImage("resources/sprites/background_01.jpg");
@@ -12,21 +13,45 @@ function preload() {
 	panda_punch = loadImage("resources/sprites/Panda-punch.png");
 	panda_damage = loadImage("resources/sprites/Panda_damage.png");
 
+	troyanpike_stan1 = loadImage("resources/sprites/TroyanKid_stan1.png")
+	troyanpike_stan2 = loadImage("resources/sprites/TroyanKid_stan2.png")
+	troyanpike_angry1 = loadImage("resources/sprites/TroyanKid_angry1.png")
+	troyanpike_angry2 = loadImage("resources/sprites/TroyanKid_angry2.png")
+	troyanpike_angry3 = loadImage("resources/sprites/TroyanKid_angry3.png")
+	troyanroll_idle = loadImage("resources/sprites/TroyanPike-prev1.png")
+	boss_stan_1		  = loadImage("resources/sprites/boss_stan1.png")
+	boss_stan_2		  = loadImage("resources/sprites/boss_stan2.png")
+	boss_stan_3		  = loadImage("resources/sprites/boss_stan3.png")
+	boss_tacle_1		  = loadImage("resources/sprites/boss_tacle1.png")
+	boss_tacle_2		  = loadImage("resources/sprites/boss_tacle2.png")
+	boss_tacle_3		  = loadImage("resources/sprites/boss_tacle3.png")
 	troyanpike_idle = loadImage("resources/sprites/TroyanKid-prev1.png")
 	troyanroll_idle = loadImage("resources/sprites/TroyanPike-prev1.png")
 	tile = loadImage("resources/sprites/tile_100_b.png");
+
+	fder = loadImage("resources/sprites/in_der.png");
+	fizq = loadImage("resources/sprites/in_izq.png");
+	fup = loadImage("resources/sprites/in_up.png");
+	fatt = loadImage("resources/sprites/in_att.png");
+
+	splash = loadImage("resources/sprites/main.jpg");
 }
 
 function setup() {
 	canvas = createCanvas(1600, 900);
 	canvas.drawingContext.imageSmoothingEnabled = false;
 
-	level = new Level(level3_svg);
+    level = new Level(level3_svg);
 	hud = new HUD(level);
 	//fill(0, 80, 0);
 }
 
 function draw() {
+	if (splashTime > 0) {
+		splashTime = splashTime - 1/60;
+		image(splash, 0, 0, 1600, 900);
+		return;
+	}
 	//logica
 	level.world.step(TIMESTEP);
 	level.update(TIMESTEP);
@@ -35,12 +60,6 @@ function draw() {
 	//dibujado
 	background(255);
 	level.draw();
-	hud.draw();
+	hud.draw(level.cha.health);
 
-	text("(0, 0)", 0, 10);
-	text("(400, 300)", 400, 310);
-	text("(800, 600)", 800, 610);
-
-	text("FPS: " + frameRate().toFixed(2), 40, 10);
 }
-
