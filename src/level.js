@@ -95,10 +95,10 @@
 		push();
 		this.parallax.draw(0);
 		//drawBody(this.terrain.body);
+		this.terrain.draw();
 		this.enemyarray.forEach(function(enemy) {
 			enemy.draw();
 		});
-		this.terrain.draw();
 		this.cha.draw();
 
 		//tutorial
