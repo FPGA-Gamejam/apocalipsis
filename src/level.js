@@ -1,6 +1,8 @@
  class Level {
 	constructor(svg) {
 		this.world = new p2.World({gravity: [0, 700]});
+		this.world.setGlobalStiffness(100000);
+		this.world.defaultContactMaterial.friction = 0.0;
 		this.terrain = new Terrain(this, svg);
 		this.parallax = new Parallax();
         this.cameraXoffset = 0;
