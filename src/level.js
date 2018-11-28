@@ -1,6 +1,8 @@
  class Level {
 	constructor(svg) {
 		this.world = new p2.World({gravity: [0, 700]});
+		this.world.setGlobalStiffness(100000);
+		this.world.defaultContactMaterial.friction = 0.0;
 		this.terrain = new Terrain(this, svg);
 		this.parallax = new Parallax();
         this.cameraXoffset = 0;
@@ -9,7 +11,10 @@
         this.life_pike=3;
         this.life_boss=10;
         this.svg=svg;
-
+   this.bgXSize = 3200*1.5;
+   this.bgYSize = 900*1.5;
+   this.bgXOrigin = 0;
+   this.bgYOrigin = 0;
 		//**ENEMIES**
 		this.enemyarray = [];
 		var enemies = svg.layer("npc");
@@ -89,7 +94,7 @@
 		push();
 		this.parallax.draw(1);
 		var dist = this.parallax.layer[1].dist;
-		image(level3_bg, -1400, -720 * (1 / dist), 3200 * dist, 900 * dist);
+		image(level3_bg, this.bgXOrigin, this.bgYOrigin * (1 / dist), this.bgXSize * dist, this.bgYSize * dist);
 		pop();
 		//nivel
 		push();
