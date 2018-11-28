@@ -30,7 +30,7 @@ class Parallax {
 		}
 	}
 	draw(l) {
-		scale(1 / this.layer[l].dist);
+		scale(8 / (10*this.layer[l].dist));
 		translate(this.layer[l].pos[0], this.layer[l].pos[1]);
 	}
 }

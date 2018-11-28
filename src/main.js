@@ -3,8 +3,8 @@ var level3_svg, level3_bg, vcr;
 var level, hud;
 var splashTime = 3;
 function preload() {
-	level3_svg = new svgParser("rsc/levels/level_2.svg");
-	level3_bg = loadImage("resources/sprites/background_01.jpg");
+	level3_svg = new svgParser("rsc/levels/level_tutorial.svg");
+	level3_bg = loadImage("resources/sprites/background_00.jpg");
 	vcr = loadFont("rsc/fonts/VCR.ttf")
 	panda_stan = loadImage("resources/sprites/Panda_stan.png");
 	panda_mov = loadImage("resources/sprites/Panda-mov.png");
@@ -47,11 +47,7 @@ function setup() {
 }
 
 function draw() {
-	if (splashTime > 0) {
-		splashTime = splashTime - 1/60;
-		image(splash, 0, 0, 1600, 900);
-		return;
-	}
+
 	//logica
 	level.world.step(TIMESTEP);
 	level.update(TIMESTEP);
