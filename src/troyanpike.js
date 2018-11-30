@@ -11,8 +11,8 @@ class Troyanpike extends Enemy{
 		this.body.velocity = [10,-100];
 		this.deltaMovY = 20;
 		this.deltaMovX = 10;
-		this.deltaChar = 250;
-		this.chaseVelocity = 120;
+		this.deltaChar = 450;
+		this.chaseVelocity = 150;
 		this.backVelocity  = 75;
 		this.idle = 0;
 		this.tdraw = 0;
@@ -27,13 +27,13 @@ class Troyanpike extends Enemy{
         };
 		if( this.charNear() && this.stun==false){
 			if( this.level.cha.personbody.position[0] < this.body.position[0] )
-				this.body.velocity[0]= -this.chaseVelocity ;
+				this.body.velocity[0]= -this.varChaseVelocity(this.level.cha.personbody.position[0],this.body.position[0]);
 			else
-				this.body.velocity[0]= this.chaseVelocity ;
+				this.body.velocity[0]= this.varChaseVelocity(this.level.cha.personbody.position[0],this.body.position[0]);
 			if( this.level.cha.personbody.position[1] < this.body.position[1] )
-				this.body.velocity[1] = -this.chaseVelocity ;
+				this.body.velocity[1] = -this.varChaseVelocity(this.level.cha.personbody.position[1],this.body.position[1]);
 			else
-				this.body.velocity[1] = this.chaseVelocity ;
+				this.body.velocity[1] = this.varChaseVelocity(this.level.cha.personbody.position[1],this.body.position[1]);
 		}
 		else{
             if(this.stun==false){
@@ -51,6 +51,9 @@ class Troyanpike extends Enemy{
 
 	}
 
+	varChaseVelocity(pos1,pos2){
+		return (this.chaseVelocity)*(1+Math.abs(pos1-pos2)/(2*this.deltaChar))
+	}
 	charNear(){
 		if( Math.abs(this.level.cha.personbody.position[0] - this.body.position[0]) < this.deltaChar)
 		{

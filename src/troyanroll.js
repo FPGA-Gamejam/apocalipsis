@@ -4,10 +4,14 @@ class Troyanroll extends Enemy{
 		this.lockedChar = false;
 		this.pastNear = false;
 		this.nearNow  = false;
-		this.deltaChar = 150;
-		this.jumpSpeed = 500;
-		this.jumpLocked = false;
-		this.horizontalRatio = 5;
+		this.deltaChar = 350;
+		this.detaAlmostNear = 600;
+		this.jumpSpeed = 450;
+		this.chaseVelocity = 200;
+		this.pastPositionY = 0;
+		this.hasJumped = false;
+		this.hasLanded = true;
+		this.hasChased = false;
 	}
 	update(dt) {
         this.nearNow = this.charNear();
@@ -18,23 +22,79 @@ class Troyanroll extends Enemy{
             }
         };
 
-		if(this.charNear()&&this.body.velocity[1]<Math.abs(1))
-		{
-			this.body.velocity[1] = -this.jumpSpeed ;
-			this.jumpLocked	= true;
-			console.log("aca salto por cercano");
-		}
-		if( this.level.cha.personbody.position[0] < this.body.position[0]  && this.stun==false)
-			this.body.velocity[0] = -Math.abs(this.body.velocity[1]/this.horizontalRatio);
-		else
-			if(!this.stun) this.body.velocity[0] = Math.abs(this.body.velocity[1]/this.horizontalRatio);
-
-
+		this.jumpRoll();
+		this.getCloseRoll();
+		this.jumped();
+		this.landed();
+		this.pastPositionY=this.body.position[1];
 		this.pastNear = this.nearNow;
 	}
-	
 
-	charNear(stun){
+
+	jumped(){
+		if((this.pastPositionY - this.body.position[1])>0 && this.hasLanded)
+		{
+			this.hasJumped = true;
+			this.hasLanded = false;
+			//console.log("salta");
+		}
+	}
+
+	landed(){
+		if((this.pastPositionY - this.body.position[1])==0 && this.hasJumped)
+		{
+			this.hasJumped = false;
+			this.hasLanded = true;
+			this.hasChased = false;
+			//console.log("cae");
+		}
+	}
+
+	jumpRoll(){
+		if(this.hasLanded)
+		{
+			if(this.charNear()){
+				this.body.velocity[1] = -this.jumpSpeed ;
+			}
+			else if(this.almostNear()){
+				this.body.velocity[1] = -this.jumpSpeed/4;
+			}
+		}
+	}
+
+	getCloseRoll(){
+		if(!this.stun)
+		 {
+			if(this.charNear()&&!this.hasChased)
+	 		{
+				this.hasChased = true;
+	 			if( this.level.cha.personbody.position[0] < this.body.position[0] ){
+	 				this.body.velocity[0]= -this.chaseVelocity ;
+				}
+	 			else{
+					this.body.velocity[0]= this.chaseVelocity ;
+				}
+	 		}
+	 		else if(this.hasLanded){
+				this.hasChased = false;
+	 			this.body.velocity[0]= 0;
+	 		}
+		 }
+
+	}
+
+	almostNear(){
+		if( Math.abs(this.level.cha.personbody.position[0] - this.body.position[0]) > this.deltaChar
+			|| Math.abs(this.level.cha.personbody.position[0] - this.body.position[0]) < this.detaAlmostNear)
+		{
+		if( Math.abs(this.level.cha.personbody.position[1] - this.body.position[1]) > this.deltaChar
+			|| Math.abs(this.level.cha.personbody.position[1] - this.body.position[1]) < this.detaAlmostNear)
+			return true;
+		}
+		return false;
+	}
+
+	charNear(){
 		if( Math.abs(this.level.cha.personbody.position[0] - this.body.position[0]) < this.deltaChar)
 		{
 		if( Math.abs(this.level.cha.personbody.position[1] - this.body.position[1]) < this.deltaChar)
